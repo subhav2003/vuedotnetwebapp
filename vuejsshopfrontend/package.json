@@ -1,0 +1,58 @@
+{
+  "name": "fyp-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "test:unit": "jest"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.7.2",
+    "@fortawesome/free-regular-svg-icons": "^6.7.2",
+    "@fortawesome/free-solid-svg-icons": "^6.7.2",
+    "@fortawesome/vue-fontawesome": "^3.0.8",
+    "axios": "^1.7.7",
+    "chart.js": "^3.9.1",
+    "core-js": "^3.8.3",
+    "flush-promises": "^1.0.2",
+    "pusher-js": "^8.4.0",
+    "vue": "^3.2.13",
+    "vue-chartjs": "^4.1.2",
+    "vue-router": "^4.0.3"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.26.9",
+    "@vue/cli-plugin-babel": "~5.0.0",
+    "@vue/cli-plugin-router": "~5.0.0",
+    "@vue/cli-service": "~5.0.0",
+    "@vue/test-utils": "^2.4.0-alpha.2",
+    "autoprefixer": "^10.4.20",
+    "babel-jest": "^26.6.3",
+    "jest": "^26.6.3",
+    "jest-transform-stub": "^2.0.0",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.14",
+    "vue-jest": "^5.0.0-alpha.10"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "vue"
+    ],
+    "transform": {
+      "^.+\\.vue$": "vue-jest",
+      "^.+\\.js$": "babel-jest",
+      "^.+\\.(jpg|jpeg|png|gif|webp|svg)$": "jest-transform-stub"
+    },
+    "transformIgnorePatterns": [
+      "/node_modules/(?!axios)"
+    ],
+    "testEnvironment": "jsdom",
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/src/$1",
+      "\\.(jpg|jpeg|png|gif|webp|svg)$": "<rootDir>/tests/__mocks__/fileMock.js"
+    }
+  }
+}

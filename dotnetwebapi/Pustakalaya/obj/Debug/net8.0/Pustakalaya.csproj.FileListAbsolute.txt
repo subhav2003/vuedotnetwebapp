@@ -1,0 +1,430 @@
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\obj\Debug\net8.0\Pustakalaya.csproj.AssemblyReference.cache
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\obj\Debug\net8.0\Pustakalaya.GeneratedMSBuildEditorConfig.editorconfig
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\obj\Debug\net8.0\Pustakalaya.AssemblyInfoInputs.cache
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\obj\Debug\net8.0\Pustakalaya.AssemblyInfo.cs
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\obj\Debug\net8.0\Pustakalaya.csproj.CoreCompileInputs.cache
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\obj\Debug\net8.0\Pustakalaya.MvcApplicationPartsAssemblyInfo.cs
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\obj\Debug\net8.0\Pustakalaya.MvcApplicationPartsAssemblyInfo.cache
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\appsettings.Development.json
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\appsettings.json
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\Pustakalaya.staticwebassets.endpoints.json
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\Pustakalaya.exe
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\Pustakalaya.deps.json
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\Pustakalaya.runtimeconfig.json
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\Pustakalaya.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\Pustakalaya.pdb
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\Humanizer.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\Microsoft.Build.Locator.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\Microsoft.CodeAnalysis.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\Microsoft.CodeAnalysis.CSharp.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\Microsoft.CodeAnalysis.Workspaces.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\Microsoft.CodeAnalysis.Workspaces.MSBuild.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Design.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Relational.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\Microsoft.Extensions.Caching.Abstractions.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\Microsoft.Extensions.Caching.Memory.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\Microsoft.Extensions.DependencyModel.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\Microsoft.Extensions.Logging.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\Microsoft.Extensions.Primitives.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\Microsoft.OpenApi.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\Mono.TextTemplating.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\Npgsql.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\System.CodeDom.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\System.Composition.AttributedModel.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\System.Composition.Convention.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\System.Composition.Hosting.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\System.Composition.Runtime.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\System.Composition.TypedParts.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\System.Diagnostics.DiagnosticSource.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\System.IO.Pipelines.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\System.Text.Encodings.Web.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\System.Text.Json.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\obj\Debug\net8.0\scopedcss\bundle\Pustakalaya.styles.css
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\obj\Debug\net8.0\staticwebassets.build.json
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\obj\Debug\net8.0\staticwebassets.development.json
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\obj\Debug\net8.0\staticwebassets\msbuild.Pustakalaya.Microsoft.AspNetCore.StaticWebAssets.props
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\obj\Debug\net8.0\staticwebassets\msbuild.Pustakalaya.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\obj\Debug\net8.0\staticwebassets\msbuild.build.Pustakalaya.props
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.Pustakalaya.props
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.Pustakalaya.props
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\obj\Debug\net8.0\staticwebassets.pack.json
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\obj\Debug\net8.0\Pustakal.81223462.Up2Date
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\obj\Debug\net8.0\Pustakalaya.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\obj\Debug\net8.0\refint\Pustakalaya.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\obj\Debug\net8.0\Pustakalaya.pdb
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\obj\Debug\net8.0\Pustakalaya.genruntimeconfig.cache
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\pustakalaya\obj\Debug\net8.0\ref\Pustakalaya.dll
+D:\Coursework list\Application Development\Lasst Sem\Pustakalaya\Pustakalaya\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\obj\Debug\net8.0\Pustakalaya.csproj.AssemblyReference.cache
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\obj\Debug\net8.0\Pustakalaya.GeneratedMSBuildEditorConfig.editorconfig
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\obj\Debug\net8.0\Pustakalaya.AssemblyInfoInputs.cache
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\obj\Debug\net8.0\Pustakalaya.AssemblyInfo.cs
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\obj\Debug\net8.0\Pustakalaya.csproj.CoreCompileInputs.cache
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\obj\Debug\net8.0\Pustakalaya.MvcApplicationPartsAssemblyInfo.cs
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\obj\Debug\net8.0\Pustakalaya.MvcApplicationPartsAssemblyInfo.cache
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\obj\Debug\net8.0\Pustakalaya.sourcelink.json
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\appsettings.Development.json
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\appsettings.json
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\Pustakalaya.exe
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\Pustakalaya.deps.json
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\Pustakalaya.runtimeconfig.json
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\Pustakalaya.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\Pustakalaya.pdb
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\BCrypt.Net-Next.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\Humanizer.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\Microsoft.Build.Locator.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\Microsoft.CodeAnalysis.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\Microsoft.CodeAnalysis.CSharp.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\Microsoft.CodeAnalysis.Workspaces.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\Microsoft.CodeAnalysis.Workspaces.MSBuild.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Design.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Relational.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\Microsoft.Extensions.Caching.Abstractions.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\Microsoft.Extensions.Caching.Memory.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\Microsoft.Extensions.DependencyModel.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\Microsoft.Extensions.Logging.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\Microsoft.Extensions.Primitives.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\Microsoft.OpenApi.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\Mono.TextTemplating.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\Npgsql.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\System.CodeDom.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\System.Composition.AttributedModel.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\System.Composition.Convention.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\System.Composition.Hosting.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\System.Composition.Runtime.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\System.Composition.TypedParts.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\System.Diagnostics.DiagnosticSource.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\System.IO.Pipelines.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\System.Text.Encodings.Web.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\System.Text.Json.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\obj\Debug\net8.0\staticwebassets.build.json
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\obj\Debug\net8.0\staticwebassets.development.json
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\obj\Debug\net8.0\staticwebassets\msbuild.Pustakalaya.Microsoft.AspNetCore.StaticWebAssets.props
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\obj\Debug\net8.0\staticwebassets\msbuild.build.Pustakalaya.props
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.Pustakalaya.props
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.Pustakalaya.props
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\obj\Debug\net8.0\staticwebassets.pack.json
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\obj\Debug\net8.0\scopedcss\bundle\Pustakalaya.styles.css
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\obj\Debug\net8.0\Pustakal.81223462.Up2Date
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\obj\Debug\net8.0\Pustakalaya.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\obj\Debug\net8.0\refint\Pustakalaya.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\obj\Debug\net8.0\Pustakalaya.pdb
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\obj\Debug\net8.0\Pustakalaya.genruntimeconfig.cache
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\obj\Debug\net8.0\ref\Pustakalaya.dll
+D:\vuedotnetwebapp\WebApplication2\Pustakalaya\bin\Debug\net8.0\Pustakalaya.staticwebassets.runtime.json
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\appsettings.Development.json
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\appsettings.json
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\Pustakalaya.staticwebassets.runtime.json
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\Pustakalaya.staticwebassets.endpoints.json
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\Pustakalaya.exe
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\Pustakalaya.deps.json
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\Pustakalaya.runtimeconfig.json
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\Pustakalaya.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\Pustakalaya.pdb
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\BCrypt.Net-Next.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\Humanizer.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\Microsoft.Build.Locator.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\Microsoft.CodeAnalysis.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\Microsoft.CodeAnalysis.CSharp.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\Microsoft.CodeAnalysis.Workspaces.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\Microsoft.CodeAnalysis.Workspaces.MSBuild.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Design.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Relational.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\Microsoft.Extensions.Caching.Abstractions.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\Microsoft.Extensions.Caching.Memory.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\Microsoft.Extensions.DependencyModel.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\Microsoft.Extensions.Logging.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\Microsoft.Extensions.Primitives.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\Microsoft.OpenApi.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\Mono.TextTemplating.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\Npgsql.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\System.CodeDom.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\System.Composition.AttributedModel.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\System.Composition.Convention.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\System.Composition.Hosting.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\System.Composition.Runtime.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\System.Composition.TypedParts.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\System.Diagnostics.DiagnosticSource.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\System.IO.Pipelines.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\System.Text.Encodings.Web.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\System.Text.Json.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\obj\Debug\net8.0\Pustakalaya.csproj.AssemblyReference.cache
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\obj\Debug\net8.0\Pustakalaya.GeneratedMSBuildEditorConfig.editorconfig
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\obj\Debug\net8.0\Pustakalaya.AssemblyInfoInputs.cache
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\obj\Debug\net8.0\Pustakalaya.AssemblyInfo.cs
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\obj\Debug\net8.0\Pustakalaya.csproj.CoreCompileInputs.cache
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\obj\Debug\net8.0\Pustakalaya.MvcApplicationPartsAssemblyInfo.cs
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\obj\Debug\net8.0\Pustakalaya.MvcApplicationPartsAssemblyInfo.cache
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\obj\Debug\net8.0\scopedcss\bundle\Pustakalaya.styles.css
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\obj\Debug\net8.0\staticwebassets.build.json
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\obj\Debug\net8.0\staticwebassets.build.json.cache
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\obj\Debug\net8.0\staticwebassets.development.json
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\obj\Debug\net8.0\Pustakal.81223462.Up2Date
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\obj\Debug\net8.0\Pustakalaya.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\obj\Debug\net8.0\refint\Pustakalaya.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\obj\Debug\net8.0\Pustakalaya.pdb
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\obj\Debug\net8.0\Pustakalaya.genruntimeconfig.cache
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\obj\Debug\net8.0\ref\Pustakalaya.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\BouncyCastle.Cryptography.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\MailKit.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\MimeKit.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\System.Security.Cryptography.Pkcs.dll
+D:\Coursework list\Application Development\Lasst Sem\milestone\dotnetwebapi\Pustakalaya\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Security.Cryptography.Pkcs.dll

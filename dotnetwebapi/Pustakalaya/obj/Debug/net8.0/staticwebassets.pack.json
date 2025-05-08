@@ -1,0 +1,57 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\vuedotnetwebapp\\WebApplication2\\Pustakalaya\\wwwroot\\images\\books\\4dfd1998-374b-4610-8c93-0b52ba74608c.webp",
+      "PackagePath": "staticwebassets\\images\\books\\4dfd1998-374b-4610-8c93-0b52ba74608c.webp"
+    },
+    {
+      "Id": "D:\\vuedotnetwebapp\\WebApplication2\\Pustakalaya\\wwwroot\\images\\books\\84381c8f-bc06-426e-9715-1a1805cc5f85.jpg",
+      "PackagePath": "staticwebassets\\images\\books\\84381c8f-bc06-426e-9715-1a1805cc5f85.jpg"
+    },
+    {
+      "Id": "D:\\vuedotnetwebapp\\WebApplication2\\Pustakalaya\\wwwroot\\images\\books\\84fd527b-8fd2-41dd-a079-00b50c2579da.webp",
+      "PackagePath": "staticwebassets\\images\\books\\84fd527b-8fd2-41dd-a079-00b50c2579da.webp"
+    },
+    {
+      "Id": "D:\\vuedotnetwebapp\\WebApplication2\\Pustakalaya\\wwwroot\\images\\books\\8e0ba606-f18c-4603-a55c-bffb98dc5d6f.jpg",
+      "PackagePath": "staticwebassets\\images\\books\\8e0ba606-f18c-4603-a55c-bffb98dc5d6f.jpg"
+    },
+    {
+      "Id": "D:\\vuedotnetwebapp\\WebApplication2\\Pustakalaya\\wwwroot\\images\\books\\97cd7536-daf6-4e4b-9e02-f2b98e3ca23e.webp",
+      "PackagePath": "staticwebassets\\images\\books\\97cd7536-daf6-4e4b-9e02-f2b98e3ca23e.webp"
+    },
+    {
+      "Id": "D:\\vuedotnetwebapp\\WebApplication2\\Pustakalaya\\wwwroot\\images\\books\\a94443c4-efcb-40d6-a03c-4fce38bfc977.jpg",
+      "PackagePath": "staticwebassets\\images\\books\\a94443c4-efcb-40d6-a03c-4fce38bfc977.jpg"
+    },
+    {
+      "Id": "D:\\vuedotnetwebapp\\WebApplication2\\Pustakalaya\\wwwroot\\images\\books\\d578d6d0-091e-40d4-a1ad-767eaf268079.webp",
+      "PackagePath": "staticwebassets\\images\\books\\d578d6d0-091e-40d4-a1ad-767eaf268079.webp"
+    },
+    {
+      "Id": "D:\\vuedotnetwebapp\\WebApplication2\\Pustakalaya\\wwwroot\\images\\books\\eb01526a-80b0-4deb-aa4c-2761b0582e95.webp",
+      "PackagePath": "staticwebassets\\images\\books\\eb01526a-80b0-4deb-aa4c-2761b0582e95.webp"
+    },
+    {
+      "Id": "D:\\vuedotnetwebapp\\WebApplication2\\Pustakalaya\\wwwroot\\images\\books\\f0f4aefd-8d26-456a-864e-50206fe72b55.webp",
+      "PackagePath": "staticwebassets\\images\\books\\f0f4aefd-8d26-456a-864e-50206fe72b55.webp"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Pustakalaya.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.Pustakalaya.props",
+      "PackagePath": "build\\Pustakalaya.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.Pustakalaya.props",
+      "PackagePath": "buildMultiTargeting\\Pustakalaya.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.Pustakalaya.props",
+      "PackagePath": "buildTransitive\\Pustakalaya.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
