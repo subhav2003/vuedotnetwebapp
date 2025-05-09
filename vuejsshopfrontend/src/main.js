@@ -1,3 +1,4 @@
+// main.js
 import { createApp } from 'vue';
 import App from './App.vue';
 import router from './router';
@@ -18,11 +19,24 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { faStar as faStarOutline } from '@fortawesome/free-regular-svg-icons';
 
+// ** ADD THESE LINES: **
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
+
 // Add icons to the library
-library.add(faShoppingCart, faStar, faStarHalfAlt, faStarOutline, faUser, faSignOutAlt, faBell);
+library.add(
+    faShoppingCart,
+    faStar,
+    faStarHalfAlt,
+    faStarOutline,
+    faUser,
+    faSignOutAlt,
+    faBell,
+    // ** and add heart here **
+    faHeart
+);
 
 // Create Vue app and register Font Awesome globally
 createApp(App)
-    .component('font-awesome-icon', FontAwesomeIcon) // Register Font Awesome component globally
+    .component('font-awesome-icon', FontAwesomeIcon)
     .use(router)
     .mount('#app');

@@ -1,33 +1,39 @@
 <template>
-  <footer class="bg-[#23110d] py-8 text-[#C8B280]">
-    <div class="container mx-auto text-center">
-      <!-- Branding -->
-      <p>&copy; 2024 Pustakalaya — All Rights Reserved</p>
-
+  <footer class="bg-[#0a0a0a] py-12">
+    <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- About Section -->
+      <div class="footer-about">
+        <h3 class="text-xl text-white mb-4">About Pustakalaya</h3>
+        <p class="text-gray-400">Pustakalaya is your go-to online bookstore for quality books across various genres.</p>
+      </div>
+      <!-- Quick Links -->
+      <div class="footer-links">
+        <h3 class="text-xl text-white mb-4">Quick Links</h3>
+        <ul class="space-y-2">
+          <li><router-link to="/about" class="hover:text-[#b25e31]">About Us</router-link></li>
+          <li><router-link to="/contact" class="hover:text-[#b25e31]">Contact Us</router-link></li>
+          <li><router-link to="/terms" class="hover:text-[#b25e31]">Terms of Service</router-link></li>
+          <li><router-link to="/privacy" class="hover:text-[#b25e31]">Privacy Policy</router-link></li>
+        </ul>
+      </div>
       <!-- Social Links -->
-      <div class="mt-4">
-        <p class="text-[#C8B280]">Follow us on:</p>
-        <div class="flex justify-center space-x-6 mt-2 text-sm">
-          <a href="#" aria-label="Facebook" class="flex items-center hover:text-[#FFD700] transition duration-300">
-            <i class="fab fa-facebook-f mr-2"></i> Facebook
+      <div class="footer-social">
+        <h3 class="text-xl text-white mb-4">Follow us on:</h3>
+        <div class="flex space-x-4">
+          <a href="#" target="_blank" rel="noopener noreferrer" class="w-9 h-9 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#b25e31] transition">
+            <i class="fab fa-facebook text-gray-400 hover:text-white"></i>
           </a>
-          <a href="#" aria-label="Instagram" class="flex items-center hover:text-[#FFD700] transition duration-300">
-            <i class="fab fa-instagram mr-2"></i> Instagram
+          <a href="#" target="_blank" rel="noopener noreferrer" class="w-9 h-9 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#b25e31] transition">
+            <i class="fab fa-instagram text-gray-400 hover:text-white"></i>
           </a>
-          <a href="#" aria-label="Twitter" class="flex items-center hover:text-[#FFD700] transition duration-300">
-            <i class="fab fa-twitter mr-2"></i> Twitter
+          <a href="#" target="_blank" rel="noopener noreferrer" class="w-9 h-9 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#b25e31] transition">
+            <i class="fab fa-twitter text-gray-400 hover:text-white"></i>
           </a>
         </div>
       </div>
-
-      <!-- Additional Links -->
-      <div class="mt-6 space-x-2 text-sm">
-        <a href="/privacy-policy" class="hover:text-[#FFD700] transition duration-300">Privacy Policy</a>
-        <span class="text-gray-600">|</span>
-        <a href="/terms" class="hover:text-[#FFD700] transition duration-300">Terms of Service</a>
-        <span class="text-gray-600">|</span>
-        <a href="/contact" class="hover:text-[#FFD700] transition duration-300">Contact Us</a>
-      </div>
+    </div>
+    <div class="mt-8 border-t border-gray-700 pt-4 text-center text-gray-500">
+      &copy; {{ new Date().getFullYear() }} Pustakalaya — All Rights Reserved
     </div>
   </footer>
 </template>

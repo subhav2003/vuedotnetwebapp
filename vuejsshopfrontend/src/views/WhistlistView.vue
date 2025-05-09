@@ -1,118 +1,7 @@
 <template>
-  <div class="wishlist-page min-h-screen flex flex-col bg-[#0f0f0f] text-[#C8B280]">
+  <div class="wishlist-page min-h-screen flex flex-col bg-gray-900 text-[#C8B280]">
     <!-- NavBar Component -->
-    <nav class="bg-[#23110d] py-4 shadow-md sticky top-0 z-10 text-[#C8B280]">
-      <!-- Toasts -->
-      <div class="toast-container fixed top-4 right-4 z-50 w-80">
-        <div
-            v-for="toast in toasts"
-            :key="toast.id"
-            :class="['p-3 mb-3 rounded shadow-lg flex items-center justify-between transition-all transform translate-x-0',
-                  toast.type === 'success' ? 'bg-green-800 text-white' : 
-                  toast.type === 'error' ? 'bg-red-800 text-white' : 
-                  'bg-blue-800 text-white']">
-          <span>{{ toast.message }}</span>
-          <button @click="() => removeToast(toast.id)" class="ml-2 text-white">&times;</button>
-        </div>
-      </div>
-
-      <div class="flex justify-between items-center container mx-auto px-4">
-        <!-- Logo -->
-        <router-link to="/" class="inline-block">
-          <img src="@/assets/pustakalaya-logo.png" alt="Pustakalaya Logo"
-               class="w-12 h-12 md:w-14 md:h-14"/>
-        </router-link>
-
-        <!-- Center Links -->
-        <ul class="hidden md:flex space-x-6">
-          <li>
-            <router-link to="/" class="text-lg font-semibold hover:text-[#A47148]"
-                         exact-active-class="text-white font-bold">Home
-            </router-link>
-          </li>
-          <li>
-            <router-link to="/shop" class="text-lg font-semibold hover:text-[#A47148]"
-                         exact-active-class="text-white font-bold">Shop
-            </router-link>
-          </li>
-          <li v-if="!isLoggedIn">
-            <router-link to="/auth" class="text-lg font-semibold hover:text-[#A47148]"
-                         exact-active-class="text-white font-bold">Login
-            </router-link>
-          </li>
-        </ul>
-
-        <!-- Right Icons -->
-        <div class="flex items-center space-x-6 relative">
-          <!-- Wishlist Icon -->
-          <router-link to="/wishlist" class="relative hover:text-[#FFD700]">
-            <font-awesome-icon :icon="['fas','heart']" class="text-2xl"/>
-            <span v-if="wishlistItems.length > 0"
-                  class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-              {{ wishlistItems.length }}
-            </span>
-          </router-link>
-
-          <!-- Cart Icon -->
-          <router-link to="/cart" class="relative hover:text-[#FFD700]">
-            <font-awesome-icon :icon="['fas','shopping-cart']" class="text-2xl"/>
-            <span v-if="cartItemCount > 0"
-                  class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-              {{ cartItemCount }}
-            </span>
-          </router-link>
-
-          <!-- Profile Dropdown -->
-          <div v-if="isLoggedIn" class="relative">
-            <button @click="toggleProfileDropdown" class="hover:text-[#FFD700]">
-              <font-awesome-icon :icon="['fas','user']" class="text-2xl"/>
-            </button>
-            <div v-if="showProfileDropdown"
-                 class="absolute right-0 mt-2 w-40 bg-[#121212] text-[#C8B280] shadow-lg rounded-lg py-2 z-50">
-              <router-link to="/profile"
-                           class="block px-4 py-2 text-sm hover:bg-[#1c1c1c]">Profile
-              </router-link>
-              <button @click="logout"
-                      class="block w-full text-left px-4 py-2 text-sm hover:bg-[#1c1c1c]">
-                Logout
-              </button>
-            </div>
-          </div>
-
-          <!-- Mobile Menu -->
-          <div class="md:hidden relative">
-            <button @click="isMobileOpen = !isMobileOpen" class="text-[#C8B280]">
-              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M4 6h16M4 12h16M4 18h16"/>
-              </svg>
-            </button>
-            <ul v-if="isMobileOpen"
-                class="absolute right-0 mt-2 w-48 bg-[#121212] text-[#C8B280] shadow-lg rounded-lg py-2 z-50">
-              <li>
-                <router-link to="/" class="block px-4 py-2 text-sm hover:bg-[#1c1c1c]">Home</router-link>
-              </li>
-              <li>
-                <router-link to="/shop" class="block px-4 py-2 text-sm hover:bg-[#1c1c1c]">Shop</router-link>
-              </li>
-              <li>
-                <router-link to="/wishlist" class="block px-4 py-2 text-sm hover:bg-[#1c1c1c]">Wishlist</router-link>
-              </li>
-              <li>
-                <router-link to="/cart" class="block px-4 py-2 text-sm hover:bg-[#1c1c1c]">Cart</router-link>
-              </li>
-              <li v-if="!isLoggedIn">
-                <router-link to="/auth" class="block px-4 py-2 text-sm hover:bg-[#1c1c1c]">Login</router-link>
-              </li>
-              <li v-else>
-                <button @click="logout" class="block w-full text-left px-4 py-2 text-sm hover:bg-[#1c1c1c]">Logout
-                </button>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </nav>
+    <NavBar/>
 
     <!-- Main Content -->
     <main class="flex-1 container mx-auto px-4 py-6">
@@ -235,37 +124,7 @@
     </div>
 
     <!-- Footer Component -->
-    <footer class="bg-[#23110d] py-8 text-[#C8B280]">
-      <div class="container mx-auto text-center">
-        <!-- Branding -->
-        <p>&copy; 2024 Pustakalaya — All Rights Reserved</p>
-
-        <!-- Social Links -->
-        <div class="mt-4">
-          <p class="text-[#C8B280]">Follow us on:</p>
-          <div class="flex justify-center space-x-6 mt-2 text-sm">
-            <a href="#" aria-label="Facebook" class="flex items-center hover:text-[#FFD700] transition duration-300">
-              <i class="fab fa-facebook-f mr-2"></i> Facebook
-            </a>
-            <a href="#" aria-label="Instagram" class="flex items-center hover:text-[#FFD700] transition duration-300">
-              <i class="fab fa-instagram mr-2"></i> Instagram
-            </a>
-            <a href="#" aria-label="Twitter" class="flex items-center hover:text-[#FFD700] transition duration-300">
-              <i class="fab fa-twitter mr-2"></i> Twitter
-            </a>
-          </div>
-        </div>
-
-        <!-- Additional Links -->
-        <div class="mt-6 space-x-2 text-sm">
-          <a href="/privacy-policy" class="hover:text-[#FFD700] transition duration-300">Privacy Policy</a>
-          <span class="text-gray-600">|</span>
-          <a href="/terms" class="hover:text-[#FFD700] transition duration-300">Terms of Service</a>
-          <span class="text-gray-600">|</span>
-          <a href="/contact" class="hover:text-[#FFD700] transition duration-300">Contact Us</a>
-        </div>
-      </div>
-    </footer>
+   <footer-component/>
   </div>
 </template>
 
@@ -273,6 +132,8 @@
 import {ref, computed, reactive, onMounted} from 'vue'
 import {useRouter} from 'vue-router'
 import axios from 'axios'
+import NavBar from "@/components/NavBar.vue";
+import FooterComponent from "@/components/Footer.vue";
 
 // Base URL from webpack env
 const baseUrl = process.env.VUE_APP_API_URL || window.location.origin
