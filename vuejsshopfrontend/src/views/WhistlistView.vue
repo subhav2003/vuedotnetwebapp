@@ -13,7 +13,8 @@
         <router-link
             to="/shop"
             class="px-6 py-2 bg-[#A0522D] text-white rounded hover:bg-[#8B4513] transition"
-        >Browse Books
+        >
+          Browse Books
         </router-link>
       </div>
 
@@ -27,7 +28,7 @@
           >
             <div class="relative">
               <img
-                  :src="item.images[0] || '/fallback.png'"
+                  :src="normalizeImage(item.images[0])"
                   :alt="item.title"
                   class="w-full h-48 object-cover rounded mb-4"
               />
@@ -66,17 +67,21 @@
       </div>
 
       <!-- Action buttons -->
-      <div v-if="wishlistItems.length"
-           class="mt-8 flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-4">
+      <div
+          v-if="wishlistItems.length"
+          class="mt-8 flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-4"
+      >
         <button
             @click="addAllToCart"
             class="px-6 py-2 bg-[#A0522D] text-white rounded hover:bg-[#8B4513] transition"
-        >Add All to Cart
+        >
+          Add All to Cart
         </button>
         <button
             @click="clearWishlist"
             class="px-6 py-2 bg-[#8B0000] text-white rounded hover:bg-[#a30000] transition"
-        >Clear Wishlist
+        >
+          Clear Wishlist
         </button>
       </div>
     </main>
@@ -118,258 +123,152 @@
         <button
             @click="showShareModal = false"
             class="mt-6 w-full px-4 py-2 bg-[#333] text-[#C8B280] rounded hover:bg-[#444] transition"
-        >Close
+        >
+          Close
         </button>
       </div>
     </div>
 
     <!-- Footer Component -->
-   <footer-component/>
+    <FooterComponent/>
   </div>
 </template>
 
 <script setup>
-import {ref, computed, reactive, onMounted} from 'vue'
-import {useRouter} from 'vue-router'
-import axios from 'axios'
-import NavBar from "@/components/NavBar.vue";
-import FooterComponent from "@/components/Footer.vue";
+import { ref, onMounted, reactive } from 'vue';
+import axios from 'axios';
+import NavBar from '@/components/NavBar.vue';
+import FooterComponent from '@/components/Footer.vue';
 
-// Base URL from webpack env
-const baseUrl = process.env.VUE_APP_API_URL || window.location.origin
-const router = useRouter()
+// Base URL for your API (images live here)
+const baseUrl = process.env.VUE_APP_API_URL || window.location.origin;
 
-// --- Auth & UI State ---
-const isLoggedIn = ref(false)
-const showProfileDropdown = ref(false)
-const isMobileOpen = ref(false)
-const showShareModal = ref(false)
-const currentShareItem = ref(null)
-const shareUrl = ref('')
-const cartItemCount = ref(0)
+// UI & Auth State
+const isLoggedIn     = ref(false);
+const showShareModal = ref(false);
+const currentShareItem = ref(null);
+const shareUrl       = ref('');
 
-// --- Store Setup: Wishlist & Cart ---
-// 1. Wishlist State
-const wishlistItems = ref([])
+// Wishlist Data
+const wishlistItems = ref([]);
 
-// 2. Cart State & Functions
-// Actual cart functions that would interact with your API
-async function addToCart(item) {
-  try {
-    const response = await axios.post(`${baseUrl}/api/v1/cart`, {
-      productId: item.id,
-      quantity: 1
-    }, {
-      headers: authHeader()
-    })
+// Toasts
+const toasts = reactive([]);
+function showToast(message, type = 'success') {
+  const id = Date.now() + Math.random();
+  toasts.push({ id, message, type });
+  setTimeout(() => {
+    const idx = toasts.findIndex(t => t.id === id);
+    if (idx > -1) toasts.splice(idx, 1);
+  }, 5000);
+}
 
-    showToast('Item added to cart')
-    fetchCartCount() // Refresh cart count
-    return {success: true, message: 'Item added to cart'}
-  } catch (err) {
-    console.error('Failed to add item to cart', err)
-    showToast('Failed to add item to cart', 'error')
-    return {success: false, message: err.response?.data?.message || 'Failed to add item to cart'}
+// Auth header
+function authHeader() {
+  const token = localStorage.getItem('authToken');
+  return token ? { Authorization: `Bearer ${token}` } : {};
+}
+
+// Normalize an image path to an absolute URL
+function normalizeImage(path) {
+  if (!path) return '/fallback.png';
+  if (/^https?:\/\//.test(path)) {
+    return path;
   }
+  // Prepend your API base URL
+  return `${baseUrl.replace(/\/$/, '')}${path.startsWith('/') ? '' : '/'}${path}`;
 }
 
-// --- Toast Notification System ---
-const toasts = reactive([])
-const removeToast = id => {
-  const idx = toasts.findIndex(t => t.id === id)
-  if (idx > -1) toasts.splice(idx, 1)
-}
-const showToast = (msg, type = 'success') => {
-  const id = Date.now() + Math.random()
-  toasts.push({id, message: msg, type})
-  setTimeout(() => removeToast(id), 5000)
-}
-
-// --- Auth Helper Function ---
-const authHeader = () => {
-  const token = localStorage.getItem('authToken')
-  return token ? {Authorization: `Bearer ${token}`} : {}
-}
-
-// --- Wishlist Functions ---
-// 1. Fetch wishlist
+// Fetch the user's wishlist
 async function fetchWishlist() {
+  if (!localStorage.getItem('authToken')) return;
   try {
-    const response = await axios.get(`${baseUrl}/api/v1/wishlist`, {
+    const res = await axios.get(`${baseUrl}/api/bookmarks`, {
       headers: authHeader()
-    })
-
-    // Process and normalize the response data
-    const rawItems = response.data.data || []
-    wishlistItems.value = processWishlistItems(rawItems)
-  } catch (err) {
-    console.error('Failed to fetch wishlist', err)
-    showToast('Failed to load wishlist items', 'error')
+    });
+    wishlistItems.value = res.data.data.map(b => ({
+      id: b.bookId,
+      title: b.title,
+      description: b.description,
+      price: b.price,
+      images: b.images
+    }));
+  } catch {
+    showToast('Failed to load wishlist', 'error');
   }
 }
 
-// 2. Process wishlist items
-function processWishlistItems(items) {
-  return items.map(i => {
-    let id, title, description, price, rawImgs
-
-    if ('bookId' in i) {
-      id = i.bookId;
-      title = i.title;
-      description = i.description;
-      price = i.price;
-      rawImgs = i.images
-    } else if (i.product?.bookId !== undefined) {
-      id = i.product.bookId;
-      title = i.product.title || i.product.name;
-      description = i.product.description;
-      price = i.product.price;
-      rawImgs = i.product.images
-    } else if (i.product?.id !== undefined) {
-      id = i.product.id;
-      title = i.product.name;
-      description = i.product.description;
-      price = i.product.price;
-      rawImgs = i.product.images
-    } else {
-      console.error('Unknown item shape', i)
-      return null
-    }
-
-    const images = (rawImgs || []).map(p =>
-        p.startsWith('http') ? p : `${baseUrl.replace(/\/$/, '')}${p.startsWith('/') ? '' : '/'}${p}`
-    )
-
-    return {id, title, description, price, images}
-  }).filter(Boolean)
-}
-
-// 3. Remove from wishlist
+// Remove a single item
 async function removeFromWishlist(item) {
   try {
-    await axios.delete(`${baseUrl}/api/v1/wishlist/${item.id}`, {
+    await axios.delete(`${baseUrl}/api/bookmarks/${item.id}`, {
       headers: authHeader()
-    })
-
-    // Remove item locally
-    wishlistItems.value = wishlistItems.value.filter(i => i.id !== item.id)
-    showToast('Item removed from wishlist')
-    return {success: true, message: 'Item removed from wishlist'}
-  } catch (err) {
-    console.error('Failed to remove item from wishlist', err)
-    showToast('Failed to remove item from wishlist', 'error')
-    return {success: false, message: err.response?.data?.message || 'Failed to remove item'}
+    });
+    wishlistItems.value = wishlistItems.value.filter(i => i.id !== item.id);
+    showToast('Removed from wishlist');
+  } catch {
+    showToast('Failed to remove', 'error');
   }
 }
 
-// 4. Clear wishlist
+// Clear entire wishlist
 async function clearWishlist() {
   try {
-    await axios.delete(`${baseUrl}/api/v1/wishlist`, {
-      headers: authHeader()
-    })
-
-    // Clear local wishlist
-    wishlistItems.value = []
-    showToast('Wishlist cleared')
-    return {success: true, message: 'Wishlist cleared'}
-  } catch (err) {
-    console.error('Failed to clear wishlist', err)
-    showToast('Failed to clear wishlist', 'error')
-    return {success: false, message: err.response?.data?.message || 'Failed to clear wishlist'}
+    await Promise.all(
+        wishlistItems.value.map(i =>
+            axios.delete(`${baseUrl}/api/bookmarks/${i.id}`, {
+              headers: authHeader()
+            })
+        )
+    );
+    wishlistItems.value = [];
+    showToast('Wishlist cleared');
+  } catch {
+    showToast('Failed to clear', 'error');
   }
 }
 
-// 5. Add all to cart
-async function addAllToCart() {
-  try {
-    const promises = wishlistItems.value.map(item => addToCart(item))
-    await Promise.all(promises)
-    showToast('All items added to cart')
-  } catch (err) {
-    console.error('Failed to add all items to cart', err)
-    showToast('Failed to add all items to cart', 'error')
-  }
+// Add all to cart (stub)
+function addToCart(item) {
+  showToast('Added to cart');
 }
 
-// --- Share Functionality ---
+// Add all items
+function addAllToCart() {
+  wishlistItems.value.forEach(i => addToCart(i));
+  showToast('All added to cart');
+}
+
+// Share flow
 function shareItem(item) {
-  currentShareItem.value = item
-  shareUrl.value = `${window.location.origin}/shop/book/${item.id}`
-  showShareModal.value = true
+  currentShareItem.value = item;
+  shareUrl.value = `${window.location.origin}/shop/book/${item.id}`;
+  showShareModal.value = true;
 }
 
 function copyToClipboard() {
   navigator.clipboard.writeText(shareUrl.value)
-      .then(() => showToast('Link copied to clipboard'))
-      .catch(() => showToast('Failed to copy link', 'error'))
+      .then(() => showToast('Copied'))
+      .catch(() => showToast('Copy failed','error'));
 }
 
 function shareOnSocial(platform) {
-  const item = currentShareItem.value
-  const text = `Check out "${item.title}" on Pustakalaya!`
-  const url = shareUrl.value
-
-  let shareUrl
-  switch (platform) {
-    case 'facebook':
-      shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`
-      break
-    case 'twitter':
-      shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`
-      break
-    case 'whatsapp':
-      shareUrl = `https://wa.me/?text=${encodeURIComponent(text + ' ' + url)}`
-      break
+  const text = `Check out ${currentShareItem.value.title}`;
+  let url = '';
+  switch(platform) {
+    case 'facebook': url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl.value)}`; break;
+    case 'twitter':  url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(shareUrl.value)}`; break;
+    case 'whatsapp': url = `https://wa.me/?text=${encodeURIComponent(text + ' ' + shareUrl.value)}`; break;
   }
-
-  window.open(shareUrl, '_blank')
-  showShareModal.value = false
+  window.open(url, '_blank');
+  showShareModal.value = false;
 }
 
-// --- Profile Dropdown Toggle ---
-function toggleProfileDropdown() {
-  showProfileDropdown.value = !showProfileDropdown.value
-}
-
-// --- Logout Function ---
-async function logout() {
-  try {
-    await axios.post(`${baseUrl}/api/v1/logout`, {}, {
-      headers: authHeader()
-    })
-  } catch {
-  }
-  localStorage.clear()
-  isLoggedIn.value = false
-  router.push('/auth')
-}
-
-// --- Cart Count ---
-async function fetchCartCount() {
-  try {
-    const response = await axios.get(`${baseUrl}/api/v1/cart`, {
-      headers: authHeader()
-    })
-
-    // Extract cart count from response
-    const cartData = response.data.data || {}
-    const items = cartData.cart?.products || []
-    cartItemCount.value = items.reduce((sum, item) => sum + item.quantity, 0)
-  } catch (err) {
-    console.error('Failed to fetch cart count', err)
-    cartItemCount.value = 0
-  }
-}
-
-// --- Initialization ---
+// Initialization
 onMounted(() => {
-  isLoggedIn.value = !!localStorage.getItem('authToken')
-  if (isLoggedIn.value) {
-    fetchWishlist()
-    fetchCartCount()
-  }
-})
+  isLoggedIn.value = !!localStorage.getItem('authToken');
+  if (isLoggedIn.value) fetchWishlist();
+});
 </script>
 
 <style scoped>
@@ -379,26 +278,13 @@ onMounted(() => {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-
 .fade-enter-active, .fade-leave-active {
   transition: all 0.3s ease;
 }
-
-.fade-enter-from {
+.fade-enter-from, .fade-leave-to {
   opacity: 0;
   transform: translateY(10px);
 }
-
-.fade-enter-to {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.fade-leave-to {
-  opacity: 0;
-  transform: translateY(10px);
-}
-
 .contents {
   display: contents;
 }
