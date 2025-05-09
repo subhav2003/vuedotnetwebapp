@@ -7,6 +7,7 @@
 
       <h2 class="text-2xl font-semibold mb-4">Add New Book</h2>
       <form @submit.prevent="addBook" class="space-y-4" enctype="multipart/form-data">
+
         <!-- Title & Author -->
         <div>
           <label class="block">Title</label>
@@ -17,7 +18,7 @@
           <input v-model="book.author" type="text" class="input-field" required />
         </div>
 
-        <!-- Genre Dropdown -->
+        <!-- Genre -->
         <div>
           <label class="block">Genre</label>
           <select v-model.number="book.genreId" class="input-field" required>
@@ -44,6 +45,32 @@
         <div>
           <label class="block">Format</label>
           <input v-model="book.format" type="text" class="input-field" />
+        </div>
+
+        <!-- Description -->
+        <div>
+          <label class="block">Description</label>
+          <textarea v-model="book.description" rows="3" class="input-field" placeholder="Enter book description..."></textarea>
+        </div>
+
+        <!-- Publisher & Book Type -->
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block">Publisher</label>
+            <input v-model="book.publisher" type="text" class="input-field" />
+          </div>
+          <div>
+            <label class="block">Book Type</label>
+            <input v-model="book.bookType" type="text" placeholder="Signed, Limited..." class="input-field" />
+          </div>
+        </div>
+
+        <!-- Exclusive Edition Toggle -->
+        <div>
+          <label class="flex items-center">
+            <input v-model="book.isExclusiveEdition" type="checkbox" class="mr-2" />
+            Exclusive Edition
+          </label>
         </div>
 
         <!-- Price, Stock, Publication Date -->
@@ -124,11 +151,10 @@ import Toast from '@/components/Toast.vue';
 const apiBaseUrl = process.env.VUE_APP_API_URL;
 
 const book = reactive({
-  title: '', author: '', genreId: null, isbn: '',
-  language: '', format: '', price: 0, stock: 0,
-  publicationDate: '', isPhysicalAccess: false,
-  isOnSale: false, discountPercentage: 0,
-  discountStart: '', discountEnd: ''
+  title: '', author: '', genreId: null, isbn: '', language: '', format: '',
+  description: '', publisher: '', bookType: '', isExclusiveEdition: false,
+  price: 0, stock: 0, publicationDate: '', isPhysicalAccess: false,
+  isOnSale: false, discountPercentage: 0, discountStart: '', discountEnd: ''
 });
 
 const imageFiles = ref([]);
@@ -191,14 +217,10 @@ async function addBook() {
     });
 
     showToast(data.message || 'Book added successfully!');
+    Object.keys(book).forEach(key => book[key] = (typeof book[key] === 'boolean' ? false : ''));
 
-    Object.assign(book, {
-      title: '', author: '', genreId: null, isbn: '',
-      language: '', format: '', price: 0, stock: 0,
-      publicationDate: '', isPhysicalAccess: false,
-      isOnSale: false, discountPercentage: 0,
-      discountStart: '', discountEnd: ''
-    });
+    book.price = 0;
+    book.stock = 0;
 
     imageFiles.value = [];
     imagePreviews.value.forEach(img => URL.revokeObjectURL(img.url));

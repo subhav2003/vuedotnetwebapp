@@ -1,6 +1,14 @@
 {
   "Files": [
     {
+      "Id": "D:\\vuedotnetwebapp\\WebApplication2\\Pustakalaya\\wwwroot\\images\\books\\0354d176-273d-40a7-8a07-5db11a1caa4a.webp",
+      "PackagePath": "staticwebassets\\images\\books\\0354d176-273d-40a7-8a07-5db11a1caa4a.webp"
+    },
+    {
+      "Id": "D:\\vuedotnetwebapp\\WebApplication2\\Pustakalaya\\wwwroot\\images\\books\\340dde64-2b76-4ab4-ad9d-9a2d12249a2a.webp",
+      "PackagePath": "staticwebassets\\images\\books\\340dde64-2b76-4ab4-ad9d-9a2d12249a2a.webp"
+    },
+    {
       "Id": "D:\\vuedotnetwebapp\\WebApplication2\\Pustakalaya\\wwwroot\\images\\books\\4dfd1998-374b-4610-8c93-0b52ba74608c.webp",
       "PackagePath": "staticwebassets\\images\\books\\4dfd1998-374b-4610-8c93-0b52ba74608c.webp"
     },
@@ -25,8 +33,16 @@
       "PackagePath": "staticwebassets\\images\\books\\a94443c4-efcb-40d6-a03c-4fce38bfc977.jpg"
     },
     {
+      "Id": "D:\\vuedotnetwebapp\\WebApplication2\\Pustakalaya\\wwwroot\\images\\books\\adb728ea-b8dc-400a-b73f-517682d7ccdc.webp",
+      "PackagePath": "staticwebassets\\images\\books\\adb728ea-b8dc-400a-b73f-517682d7ccdc.webp"
+    },
+    {
       "Id": "D:\\vuedotnetwebapp\\WebApplication2\\Pustakalaya\\wwwroot\\images\\books\\d578d6d0-091e-40d4-a1ad-767eaf268079.webp",
       "PackagePath": "staticwebassets\\images\\books\\d578d6d0-091e-40d4-a1ad-767eaf268079.webp"
+    },
+    {
+      "Id": "D:\\vuedotnetwebapp\\WebApplication2\\Pustakalaya\\wwwroot\\images\\books\\d8a453be-486d-4423-aab8-791e9fcfcc90.webp",
+      "PackagePath": "staticwebassets\\images\\books\\d8a453be-486d-4423-aab8-791e9fcfcc90.webp"
     },
     {
       "Id": "D:\\vuedotnetwebapp\\WebApplication2\\Pustakalaya\\wwwroot\\images\\books\\eb01526a-80b0-4deb-aa4c-2761b0582e95.webp",

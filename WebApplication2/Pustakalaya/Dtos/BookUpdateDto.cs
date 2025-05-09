@@ -30,6 +30,27 @@ namespace Pustakalaya.DTOs
         public string Format { get; set; }
 
         [Required]
+        public string Isbn { get; set; }
+
+        [Required]
+        public string Description { get; set; }
+
+        public string Publisher { get; set; } = string.Empty;
+
+        public string BookType { get; set; } = string.Empty;
+
+        public bool IsExclusiveEdition { get; set; } = false;
+
+        public bool IsOnSale { get; set; } = false;
+
+        [Range(0, 100)]
+        public decimal DiscountPercentage { get; set; } = 0;
+
+        public DateTime? DiscountStart { get; set; }
+
+        public DateTime? DiscountEnd { get; set; }
+
+        [Required]
         public int Stock { get; set; }
     }
 }

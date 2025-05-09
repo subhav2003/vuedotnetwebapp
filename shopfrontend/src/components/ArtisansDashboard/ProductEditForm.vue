@@ -15,15 +15,13 @@
           <label class="block">Author</label>
           <input v-model="book.author" type="text" class="input-field" required />
         </div>
-
         <div>
           <label class="block">Genre</label>
           <select v-model.number="book.genreId" class="input-field" required>
-            <option value="" disabled>Select a genre</option>
+            <option disabled value="">Select genre</option>
             <option v-for="g in genres" :key="g.id" :value="g.id">{{ g.name }}</option>
           </select>
         </div>
-
         <div class="grid grid-cols-2 gap-4">
           <div>
             <label class="block">ISBN</label>
@@ -38,15 +36,27 @@
           <label class="block">Format</label>
           <input v-model="book.format" type="text" class="input-field" />
         </div>
+        <div>
+          <label class="block">Publisher</label>
+          <input v-model="book.publisher" type="text" class="input-field" />
+        </div>
+        <div>
+          <label class="block">Book Type</label>
+          <input v-model="book.bookType" type="text" class="input-field" />
+        </div>
+        <div>
+          <label class="block">Description</label>
+          <textarea v-model="book.description" class="input-field" rows="3" />
+        </div>
 
         <div class="grid grid-cols-3 gap-4">
           <div>
             <label class="block">Price</label>
-            <input v-model.number="book.price" type="number" step="0.01" class="input-field" />
+            <input v-model.number="book.price" type="number" class="input-field" />
           </div>
           <div>
             <label class="block">Stock</label>
-            <input v-model.number="book.stock" type="number" min="0" class="input-field" />
+            <input v-model.number="book.stock" type="number" class="input-field" />
           </div>
           <div>
             <label class="block">Publication Date</label>
@@ -62,6 +72,10 @@
           <label class="flex items-center">
             <input v-model="book.isOnSale" type="checkbox" class="mr-2" />
             On Sale
+          </label>
+          <label class="flex items-center">
+            <input v-model="book.isExclusiveEdition" type="checkbox" class="mr-2" />
+            Exclusive Edition
           </label>
         </div>
 
@@ -86,9 +100,7 @@
           <div class="flex flex-wrap gap-4 mt-2">
             <div v-for="(img, i) in book.images" :key="i" class="relative w-24 h-24 border rounded overflow-hidden">
               <img :src="apiBaseUrl + img" class="object-cover w-full h-full" />
-              <button @click="removeExistingImage(i)" class="absolute top-0 right-0 bg-red-600 text-white px-1 text-xs">
-                &times;
-              </button>
+              <button @click="removeExistingImage(i)" class="absolute top-0 right-0 bg-red-600 text-white px-1 text-xs">&times;</button>
             </div>
           </div>
         </div>
@@ -100,14 +112,12 @@
           <div class="flex flex-wrap gap-4 mt-3">
             <div v-for="(img, i) in newImagePreviews" :key="i" class="relative w-24 h-24 border rounded overflow-hidden">
               <img :src="img.url" class="object-cover w-full h-full" />
-              <button @click="removeNewImage(i)" class="absolute top-0 right-0 bg-red-600 text-white px-1 text-xs">
-                &times;
-              </button>
+              <button @click="removeNewImage(i)" class="absolute top-0 right-0 bg-red-600 text-white px-1 text-xs">&times;</button>
             </div>
           </div>
         </div>
 
-        <div class="flex justify-end space-x-4 mt-6">
+        <div class="flex justify-end mt-6 space-x-4">
           <button @click="closeForm" type="button" class="bg-gray-600 text-white py-2 px-4 rounded">Cancel</button>
           <button :disabled="loading" type="submit" class="bg-blue-700 text-white py-2 px-6 rounded hover:bg-blue-600 transition disabled:opacity-50">
             <span v-if="loading" class="loader w-4 h-4 mr-2"></span>
@@ -139,7 +149,8 @@ const book = reactive({
   id: 0, title: '', author: '', genreId: null, isbn: '',
   language: '', format: '', price: 0, stock: 0, publicationDate: '',
   isPhysicalAccess: false, isOnSale: false, discountPercentage: 0,
-  discountStart: '', discountEnd: '', images: []
+  discountStart: '', discountEnd: '', isExclusiveEdition: false,
+  description: '', publisher: '', bookType: '', images: []
 });
 
 const toasts = reactive([]);
@@ -167,13 +178,34 @@ async function fetchBook() {
     const { data } = await axios.get(`${apiBaseUrl}/api/Book/${props.bookId}`);
     const bookData = data.data || data;
     const genreMatch = genres.value.find(g => g.name === bookData.genreName);
+
+    book.id = bookData.id;
+    book.title = bookData.title;
+    book.author = bookData.author;
     book.genreId = genreMatch?.id || null;
-    Object.assign(book, bookData);
+    book.isbn = bookData.isbn;
+    book.language = bookData.language;
+    book.format = bookData.format;
+    book.publisher = bookData.publisher;
+    book.bookType = bookData.bookType;
+    book.description = bookData.description;
+    book.price = bookData.price;
+    book.stock = bookData.stock;
+    book.publicationDate = bookData.publicationDate?.substring(0, 10) || '';
+    book.isPhysicalAccess = bookData.isPhysicalAccess;
+    book.isOnSale = bookData.isOnSale;
+    book.discountPercentage = bookData.discountPercentage;
+    book.discountStart = bookData.discountStart?.substring(0, 10) || '';
+    book.discountEnd = bookData.discountEnd?.substring(0, 10) || '';
+    book.isExclusiveEdition = bookData.isExclusiveEdition;
+    book.images = bookData.images || [];
+
     loaded.value = true;
   } catch {
     showToast('Failed to load book', 'error');
   }
 }
+
 
 function handleImageChange(e) {
   const files = Array.from(e.target.files);
@@ -214,7 +246,6 @@ async function updateBook() {
     });
     showToast('Book updated successfully!', 'success');
     emit('updated');
-    
   } catch (err) {
     const msgs = err.response?.data?.errors;
     if (msgs) Object.values(msgs).flat().forEach(m => showToast(m, 'error'));
