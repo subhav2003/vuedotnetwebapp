@@ -387,12 +387,21 @@ namespace Pustakalaya.Controllers
                 b.DiscountPercentage,
                 b.DiscountStart,
                 b.DiscountEnd,
+                b.Isbn,
+                b.Publisher,
+                b.BookType,
+                b.Description,
+                b.IsExclusiveEdition,
+                b.AverageRating,
+                b.TotalSold,
+                b.CreatedAt,
+                b.UpdatedAt,
                 Images = b.Images.Select(i => i.Url).ToList()
-
             }).ToListAsync();
 
             return Ok(new { data = books });
         }
+
 
     }
 }

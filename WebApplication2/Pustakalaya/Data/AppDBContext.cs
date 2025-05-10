@@ -23,60 +23,85 @@ namespace Pustakalaya.Data
         {
             base.OnModelCreating(modelBuilder);
 
+            // Unique Member Email
             modelBuilder.Entity<Member>()
                 .HasIndex(m => m.Email)
                 .IsUnique();
 
+            // Book ↔ Admin
             modelBuilder.Entity<Book>()
-                .HasOne<Admin>(b => b.Admin)
-                .WithMany()
+                .HasOne(b => b.Admin)
+                .WithMany(a => a.Books)
                 .HasForeignKey(b => b.AdminId)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            // Book ↔ Genre
             modelBuilder.Entity<Book>()
-                .HasOne<Genre>(b => b.Genre)
+                .HasOne(b => b.Genre)
                 .WithMany(g => g.Books)
                 .HasForeignKey(b => b.GenreId)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            // Member ↔ Orders
             modelBuilder.Entity<Order>()
-                .HasOne<Member>(o => o.Member)
-                .WithMany()
+                .HasOne(o => o.Member)
+                .WithMany(m => m.Orders)
                 .HasForeignKey(o => o.MemberId)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            // Member ↔ Reviews
             modelBuilder.Entity<Review>()
-                .HasOne<Member>(r => r.Member)
-                .WithMany()
+                .HasOne(r => r.Member)
+                .WithMany(m => m.Reviews)
                 .HasForeignKey(r => r.MemberId)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            // Book ↔ Reviews
             modelBuilder.Entity<Review>()
-                .HasOne<Book>(r => r.Book)
-                .WithMany()
+                .HasOne(r => r.Book)
+                .WithMany(b => b.Reviews)
                 .HasForeignKey(r => r.BookId)
                 .OnDelete(DeleteBehavior.Cascade);
-            
+
+            // Unique Review: 1 review per member per book
+            modelBuilder.Entity<Review>()
+                .HasIndex(r => new { r.MemberId, r.BookId })
+                .IsUnique();
+
+            // Book ↔ BookImage
             modelBuilder.Entity<BookImage>()
                 .HasOne(img => img.Book)
                 .WithMany(b => b.Images)
                 .HasForeignKey(img => img.BookId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            // Cart ↔ CartItem
             modelBuilder.Entity<Cart>()
                 .HasMany(c => c.Items)
                 .WithOne(i => i.Cart)
                 .HasForeignKey(i => i.CartId)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            // CartItem ↔ Book
             modelBuilder.Entity<CartItem>()
                 .HasOne(i => i.Book)
                 .WithMany()
                 .HasForeignKey(i => i.BookId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-        }
-        
-        
+            // Order ↔ OrderItem
+            modelBuilder.Entity<Order>()
+                .HasMany(o => o.OrderItems)
+                .WithOne(i => i.Order)
+                .HasForeignKey(i => i.OrderId)
+                .OnDelete(DeleteBehavior.Cascade);
 
+            // OrderItem ↔ Book
+            modelBuilder.Entity<OrderItem>()
+                .HasOne(i => i.Book)
+                .WithMany()
+                .HasForeignKey(i => i.BookId)
+                .OnDelete(DeleteBehavior.Cascade);
+        }
     }
 }

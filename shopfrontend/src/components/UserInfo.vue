@@ -3,20 +3,13 @@
     <!-- Header -->
     <div class="flex items-center justify-between mb-6">
       <h2 class="text-3xl font-semibold text-gray-800">Personal Information</h2>
-
     </div>
 
     <transition name="fade" mode="out-in">
-      <!-- loading -->
-      <template v-if="!user">
-        <!-- Loading Indicator -->
-        <div  class="flex items-center justify-center py-12">
-          <svg
-              class="animate-spin h-8 w-8 text-gray-700"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-          >
+      <!-- 1) Loading -->
+      <template v-if="loading">
+        <div class="flex items-center justify-center py-12">
+          <svg class="animate-spin h-8 w-8 text-gray-700" viewBox="0 0 24 24">
             <circle
                 class="opacity-25"
                 cx="12"
@@ -24,25 +17,32 @@
                 r="10"
                 stroke="currentColor"
                 stroke-width="4"
-            ></circle>
+            />
             <path
                 class="opacity-75"
                 fill="currentColor"
                 d="M4 12a8 8 0 018-8v8H4z"
-            ></path>
+            />
           </svg>
-          <span class="ml-3 text-gray-700 font-medium">Loading Personnel Info...</span>
+          <span class="ml-3 text-gray-700 font-medium">Loading Personal&nbsp;Info…</span>
         </div>
       </template>
 
-      <!-- content -->
-      <template v-else>
+      <!-- 2) Error -->
+      <template v-else-if="error">
+        <div class="bg-red-100 text-red-700 p-4 rounded">
+          {{ error }}
+        </div>
+      </template>
 
+      <!-- 3) Profile -->
+      <template v-else-if="user">
         <div class="space-y-6">
-
           <!-- Avatar + Name -->
           <div class="flex items-center space-x-4">
-            <div class="w-24 h-24 rounded-full overflow-hidden ring-4 ring-gray-200">
+            <div
+                class="w-24 h-24 rounded-full overflow-hidden ring-4 ring-gray-200"
+            >
               <img
                   :src="imageSrc"
                   @error="onError"
@@ -56,24 +56,17 @@
             </div>
           </div>
 
-          <!-- Details: 2 columns, each row is a label→value flex -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 text-gray-800">
-            <div class="flex items-center space-x-2">
-              <div class="font-bold text-gray-700 w-24">Email:</div>
-              <div class="flex-1 break-all">{{ user.email }}</div>
-            </div>
-            <div class="flex items-center space-x-2">
-              <div class="font-bold text-gray-700 w-24">Phone:</div>
-              <div class="flex-1">{{ user.phone || '—' }}</div>
-            </div>
-            <div class="flex items-center space-x-2">
-              <div class="font-bold text-gray-700 w-24">Gender:</div>
-              <div class="flex-1">{{ capitalize(user.gender) }}</div>
-            </div>
-            <div class="flex items-center space-x-2">
-              <div class="font-bold text-gray-700 w-24">Date of Birth:</div>
-              <div class="flex-1">{{ formatDate(user.date_of_birth) }}</div>
-            </div>
+          <!-- Details -->
+          <div
+              class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 text-gray-800"
+          >
+            <Detail label="Email">{{ user.email }}</Detail>
+            <Detail label="Phone">{{ user.phone || "—" }}</Detail>
+            <Detail label="Gender">{{ capitalize(user.gender) }}</Detail>
+            <Detail label="Date&nbsp;of&nbsp;Birth"
+            >{{ formatDate(user.dateOfBirth) }}</Detail
+            >
+
             <div class="flex items-center space-x-2 sm:col-span-2">
               <div class="font-bold text-gray-700 w-24">Role:</div>
               <div class="flex-1">{{ capitalize(user.role) }}</div>
@@ -92,31 +85,71 @@
 </template>
 
 <script setup>
-import { ref, computed, watch, defineProps, defineEmits } from 'vue';
+import { ref, computed, onMounted } from "vue";
+import axios from "axios";
 
-const props = defineProps({ user: { type: Object, default: null } });
-const emit = defineEmits(['edit-profile']);
+// simple sub‑component for a label/value pair
+const Detail = {
+  props: ["label"],
+  template: `
+    <div class="flex items-center space-x-2">
+      <div class="font-bold text-gray-700 w-24" v-html="label" />
+      <div class="flex-1"><slot /></div>
+    </div>
+  `,
+};
 
+// ── reactive state ────────────────────────────────────────
+const user = ref(null);
+const loading = ref(true);
+const error = ref(null);
+
+// ── API base (works in Vue‑CLI & Vite) ────────────────────
+const apiBase =
+    (typeof import.meta !== "undefined" &&
+        import.meta.env &&
+        import.meta.env.VITE_API_URL) ||
+    process.env.VUE_APP_API_URL ||
+    "https://localhost:5001";
+
+// ── fetch profile ─────────────────────────────────────────
+onMounted(async () => {
+  try {
+    const { data } = await axios.get(`${apiBase}/api/account/profile`);
+    user.value = data.user; // camelCase now!
+  } catch (err) {
+    console.error(err);
+    error.value =
+        err.response?.data?.message || "Could not load your profile.";
+  } finally {
+    loading.value = false;
+  }
+});
+
+// ── avatar helpers ────────────────────────────────────────
 const usePlaceholder = ref(false);
 const imageSrc = computed(() => {
-  if (!usePlaceholder.value && props.user?.profile_picture) {
-    return props.user.profile_picture;
+  if (!usePlaceholder.value && user.value?.profilePicture) {
+    return user.value.profilePicture;
   }
-  const name = props.user?.name || 'User';
+  const name = user.value?.name || "User";
   const initials = encodeURIComponent(
       name
-          .split(' ')
-          .map(w => w[0])
-          .join('')
+          .split(" ")
+          .map((w) => w[0])
+          .join("")
           .substring(0, 2)
   );
   return `https://ui-avatars.com/api/?name=${initials}&background=dddddd&color=555555&size=256`;
 });
-function onError() { usePlaceholder.value = true; }
-watch(() => props.user?.profile_picture, () => (usePlaceholder.value = false));
+function onError() {
+  usePlaceholder.value = true;
+}
 
-const capitalize = s => s ? s.charAt(0).toUpperCase() + s.slice(1) : '';
-const formatDate = iso => iso ? new Date(iso).toLocaleDateString() : '—';
+// ── utilities ─────────────────────────────────────────────
+const capitalize = (s) => (s ? s.charAt(0).toUpperCase() + s.slice(1) : "");
+const formatDate = (iso) =>
+    iso ? new Date(iso).toLocaleDateString() : "—";
 </script>
 
 <style scoped>
@@ -129,6 +162,7 @@ const formatDate = iso => iso ? new Date(iso).toLocaleDateString() : '—';
 .fade-leave-active {
   transition: all 0.3s ease;
 }
-/* preserve your custom ring color if you like */
-.ring-gray-200 { --tw-ring-color: #e5e7eb; }
+.ring-gray-200 {
+  --tw-ring-color: #e5e7eb;
+}
 </style>

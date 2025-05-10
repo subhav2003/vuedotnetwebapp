@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Pustakalaya")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+99d2f6c1fa17ba19821590e99c8ed228e696509f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+08e632fb99a5ea1c6a4622cfdc357b8612901247")]
 [assembly: System.Reflection.AssemblyProductAttribute("Pustakalaya")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Pustakalaya")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Pustakalaya.Data;
@@ -11,9 +12,11 @@ using Pustakalaya.Data;
 namespace Pustakalaya.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250510113621_UpdateOrderAndOrderItemModels")]
+    partial class UpdateOrderAndOrderItemModels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -468,6 +471,9 @@ namespace Pustakalaya.Migrations
                     b.Property<long>("BookId")
                         .HasColumnType("bigint");
 
+                    b.Property<long?>("BookId1")
+                        .HasColumnType("bigint");
+
                     b.Property<string>("Comment")
                         .IsRequired()
                         .HasColumnType("text");
@@ -488,8 +494,9 @@ namespace Pustakalaya.Migrations
 
                     b.HasIndex("BookId");
 
-                    b.HasIndex("MemberId", "BookId")
-                        .IsUnique();
+                    b.HasIndex("BookId1");
+
+                    b.HasIndex("MemberId");
 
                     b.ToTable("Reviews");
                 });
@@ -497,7 +504,7 @@ namespace Pustakalaya.Migrations
             modelBuilder.Entity("Pustakalaya.Models.Book", b =>
                 {
                     b.HasOne("Pustakalaya.Models.Admin", "Admin")
-                        .WithMany("Books")
+                        .WithMany()
                         .HasForeignKey("AdminId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -550,7 +557,7 @@ namespace Pustakalaya.Migrations
             modelBuilder.Entity("Pustakalaya.Models.Order", b =>
                 {
                     b.HasOne("Pustakalaya.Models.Member", "Member")
-                        .WithMany("Orders")
+                        .WithMany()
                         .HasForeignKey("MemberId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -580,13 +587,17 @@ namespace Pustakalaya.Migrations
             modelBuilder.Entity("Pustakalaya.Models.Review", b =>
                 {
                     b.HasOne("Pustakalaya.Models.Book", "Book")
-                        .WithMany("Reviews")
+                        .WithMany()
                         .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Pustakalaya.Models.Member", "Member")
+                    b.HasOne("Pustakalaya.Models.Book", null)
                         .WithMany("Reviews")
+                        .HasForeignKey("BookId1");
+
+                    b.HasOne("Pustakalaya.Models.Member", "Member")
+                        .WithMany()
                         .HasForeignKey("MemberId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -594,11 +605,6 @@ namespace Pustakalaya.Migrations
                     b.Navigation("Book");
 
                     b.Navigation("Member");
-                });
-
-            modelBuilder.Entity("Pustakalaya.Models.Admin", b =>
-                {
-                    b.Navigation("Books");
                 });
 
             modelBuilder.Entity("Pustakalaya.Models.Book", b =>
@@ -618,13 +624,6 @@ namespace Pustakalaya.Migrations
             modelBuilder.Entity("Pustakalaya.Models.Genre", b =>
                 {
                     b.Navigation("Books");
-                });
-
-            modelBuilder.Entity("Pustakalaya.Models.Member", b =>
-                {
-                    b.Navigation("Orders");
-
-                    b.Navigation("Reviews");
                 });
 
             modelBuilder.Entity("Pustakalaya.Models.Order", b =>

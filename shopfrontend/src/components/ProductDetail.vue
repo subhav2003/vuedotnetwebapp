@@ -1,5 +1,7 @@
 <template>
   <div class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 px-4">
+    <Toast :toasts="toasts" @close="removeToast" />
+
     <div class="relative w-full max-w-4xl bg-[#1a1a1a] text-[#C8B280] rounded-lg shadow-xl overflow-y-auto max-h-[95vh]">
       <!-- Close Button -->
       <button @click="close" class="absolute top-4 right-4 text-[#aaa] hover:text-red-600 transition">
@@ -69,33 +71,46 @@
           </div>
         </div>
 
-        <!-- Reviews (Placeholder) -->
+        <!-- Reviews -->
         <div class="mt-10">
           <h3 class="text-xl font-semibold mb-2">Reviews</h3>
-          <div class="space-y-3">
-            <div v-for="(review, i) in dummyReviews" :key="i" class="bg-[#2a2a2a] p-4 rounded shadow">
-              <div class="flex space-x-1 mb-1">
-                <font-awesome-icon
-                    v-for="s in 5"
-                    :key="s"
-                    :icon="s <= review.rating ? ['fas','star'] : ['far','star']"
-                    class="w-4 h-4 text-yellow-400"
-                />
+          <div v-if="reviews.length" class="space-y-3">
+            <div
+                v-for="(review, i) in reviews"
+                :key="i"
+                class="bg-[#2a2a2a] p-4 rounded shadow"
+            >
+              <div class="flex justify-between items-start mb-1">
+                <div class="flex space-x-1">
+                  <font-awesome-icon
+                      v-for="s in 5"
+                      :key="s"
+                      :icon="s <= review.rating ? ['fas','star'] : ['far','star']"
+                      class="w-4 h-4 text-yellow-400"
+                  />
+                </div>
+                <div v-if="review.memberId === userId">
+                  <template v-if="editingReviewId !== review.id">
+                    <button class="text-sm text-blue-400 hover:underline mr-2" @click="startEdit(review)">Edit</button>
+                    <button class="text-sm text-red-400 hover:underline" @click="deleteReview(review.id)">Delete</button>
+                  </template>
+                  <template v-else>
+                    <button class="text-sm text-green-400 hover:underline mr-2" @click="submitEdit(review.id)">Submit</button>
+                    <button class="text-sm text-gray-400 hover:underline" @click="cancelEdit">Cancel</button>
+                  </template>
+                </div>
               </div>
-              <p class="font-semibold">{{ review.username }}</p>
-              <p class="text-sm text-[#ccc]">{{ review.review }}</p>
+              <p class="font-semibold">{{ review.memberName }}</p>
+              <p class="text-sm text-[#ccc]" v-if="editingReviewId !== review.id">{{ review.comment }}</p>
+              <textarea
+                  v-else
+                  v-model="editedComment"
+                  class="w-full p-2 mt-1 bg-[#1a1a1a] border border-[#444] text-[#eee] rounded"
+              />
             </div>
           </div>
-          <p class="text-xs text-gray-500 mt-3 italic">Note: These are dummy reviews for now.</p>
+          <p v-else class="text-sm italic text-[#999]">No reviews yet.</p>
         </div>
-      </div>
-    </div>
-
-    <!-- Zoomed Image Modal -->
-    <div v-if="zoomedImage" class="fixed inset-0 bg-black bg-opacity-90 z-50 flex justify-center items-center">
-      <div class="relative">
-        <img :src="zoomedImage" class="max-h-[90vh] rounded-lg border border-white shadow-2xl" />
-        <button @click="zoomedImage = null" class="absolute top-4 right-4 text-white text-2xl hover:text-red-500">×</button>
       </div>
     </div>
   </div>
@@ -105,10 +120,9 @@
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import Toast from '@/components/Toast.vue';
 
-const props = defineProps({
-  book: { type: Object, required: true }
-});
+const props = defineProps({ book: Object });
 const emit = defineEmits(['close']);
 
 const apiBaseUrl = process.env.VUE_APP_API_URL;
@@ -116,12 +130,10 @@ const bookData = ref({});
 const selectedImage = ref(null);
 const zoomedImage = ref(null);
 const loading = ref(true);
-
-const dummyReviews = [
-  { username: 'Alice', rating: 5, review: 'An excellent read. Highly recommended!' },
-  { username: 'Bob', rating: 4, review: 'Well-written and thought-provoking.' },
-  { username: 'Charlie', rating: 3, review: 'Good, but could’ve been shorter.' }
-];
+const reviews = ref([]);
+const userId = ref(Number(localStorage.getItem('userId')));
+const editingReviewId = ref(null);
+const editedComment = ref('');
 
 function close() {
   emit('close');
@@ -141,13 +153,68 @@ function formatDate(dateStr) {
   });
 }
 
+const startEdit = (review) => {
+  editingReviewId.value = review.id;
+  editedComment.value = review.comment;
+};
+
+const cancelEdit = () => {
+  editingReviewId.value = null;
+  editedComment.value = '';
+};
+
+const submitEdit = async (id) => {
+  try {
+    const token = localStorage.getItem('authToken');
+    await axios.put(`${apiBaseUrl}/api/review/${id}`, {
+      rating: 5,
+      comment: editedComment.value
+    }, {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+    const index = reviews.value.findIndex(r => r.id === id);
+    if (index !== -1) reviews.value[index].comment = editedComment.value;
+    cancelEdit();
+    showToast('Review updated successfully.');
+  } catch (err) {
+    showToast('Failed to update review.', 'error');
+  }
+};
+
+const deleteReview = async (id) => {
+  try {
+    const token = localStorage.getItem('authToken');
+    await axios.delete(`${apiBaseUrl}/api/review/${id}`, {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+    reviews.value = reviews.value.filter(r => r.id !== id);
+    showToast('Review deleted successfully.');
+  } catch (err) {
+    showToast('Failed to delete review.', 'error');
+  }
+};
+
+const toasts = ref([]);
+function showToast(message, type = 'success') {
+  const id = Date.now() + Math.random();
+  toasts.value.push({ id, message, type });
+  setTimeout(() => removeToast(id), 4000);
+}
+function removeToast(id) {
+  const i = toasts.value.findIndex(t => t.id === id);
+  if (i !== -1) toasts.value.splice(i, 1);
+}
+
 onMounted(async () => {
   try {
-    const res = await axios.get(`${apiBaseUrl}/api/Book/${props.book.id}`);
-    bookData.value = res.data.data;
+    const bookRes = await axios.get(`${apiBaseUrl}/api/Book/${props.book.id}`);
+    bookData.value = bookRes.data.data;
     selectedImage.value = apiBaseUrl + (bookData.value.images?.[0] || '');
+
+    const reviewRes = await axios.get(`${apiBaseUrl}/api/review/book/${props.book.id}`);
+    reviews.value = reviewRes.data;
   } catch (err) {
-    console.error('Failed to load book:', err);
+    console.error('Failed to load book or reviews:', err);
   } finally {
     loading.value = false;
   }
