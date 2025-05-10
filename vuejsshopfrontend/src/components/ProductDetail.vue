@@ -2,19 +2,13 @@
   <div class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 px-4">
     <div class="relative w-full max-w-4xl bg-[#1a1a1a] text-[#C8B280] rounded-lg shadow-xl overflow-y-auto max-h-[95vh]">
       <!-- Close Button -->
-      <button
-          @click="close"
-          class="absolute top-4 right-4 text-[#aaa] hover:text-red-600 transition"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-             viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M6 18L18 6M6 6l12 12" />
+      <button @click="close" class="absolute top-4 right-4 text-[#aaa] hover:text-red-600 transition">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
         </svg>
       </button>
 
       <div class="p-6 pt-10">
-        <!-- Loader -->
         <div v-if="loading" class="flex justify-center items-center h-64">
           <svg class="animate-spin h-10 w-10 text-[#C8B280]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
@@ -23,7 +17,7 @@
         </div>
 
         <div v-else class="flex flex-col lg:flex-row gap-8">
-          <!-- Left: Image -->
+          <!-- Left: Image Gallery -->
           <div class="lg:w-1/2 flex flex-col items-center">
             <img
                 :src="selectedImage"
@@ -42,7 +36,7 @@
             </div>
           </div>
 
-          <!-- Right: Book Info -->
+          <!-- Right: Info -->
           <div class="lg:w-1/2 space-y-3">
             <h2 class="text-3xl font-bold">{{ bookData.title }}</h2>
             <p class="text-sm text-[#d1c2a0]">by {{ bookData.author }}</p>
@@ -53,9 +47,19 @@
               <p><strong>Stock:</strong> {{ bookData.stock }}</p>
               <p><strong>Format:</strong> {{ bookData.format }}</p>
               <p><strong>Language:</strong> {{ bookData.language }}</p>
-              <p><strong>Published:</strong> {{ formattedDate }}</p>
+              <p><strong>ISBN:</strong> {{ bookData.isbn || 'N/A' }}</p>
+              <p><strong>Book Type:</strong> {{ bookData.bookType || 'N/A' }}</p>
+              <p><strong>Publisher:</strong> {{ bookData.publisher || 'N/A' }}</p>
+              <p><strong>Exclusive Edition:</strong> {{ bookData.isExclusiveEdition ? 'Yes' : 'No' }}</p>
               <p><strong>Digital Access:</strong> {{ bookData.isPhysicalAccess ? 'No' : 'Yes' }}</p>
               <p><strong>Physical Copy:</strong> {{ bookData.isPhysicalAccess ? 'Yes' : 'No' }}</p>
+              <p><strong>Published:</strong> {{ formatDate(bookData.publicationDate) }}</p>
+              <p v-if="bookData.isOnSale"><strong>Discount:</strong> {{ bookData.discountPercentage }}%</p>
+              <p v-if="bookData.isOnSale"><strong>Discount Period:</strong> {{ formatDate(bookData.discountStart) }} - {{ formatDate(bookData.discountEnd) }}</p>
+            </div>
+
+            <div class="mt-4">
+              <p class="text-sm leading-relaxed"><strong>Description:</strong> {{ bookData.description || 'No description.' }}</p>
             </div>
 
             <div class="mt-4 flex space-x-4">
@@ -65,20 +69,18 @@
           </div>
         </div>
 
-        <!-- Reviews -->
+        <!-- Reviews (Placeholder) -->
         <div class="mt-10">
           <h3 class="text-xl font-semibold mb-2">Reviews</h3>
           <div class="space-y-3">
             <div v-for="(review, i) in dummyReviews" :key="i" class="bg-[#2a2a2a] p-4 rounded shadow">
-              <div class="flex justify-between items-center mb-1">
-                <div class="flex space-x-1">
-                  <font-awesome-icon
-                      v-for="s in 5"
-                      :key="s"
-                      :icon="s <= review.rating ? ['fas','star'] : ['far','star']"
-                      class="w-4 h-4 text-yellow-400"
-                  />
-                </div>
+              <div class="flex space-x-1 mb-1">
+                <font-awesome-icon
+                    v-for="s in 5"
+                    :key="s"
+                    :icon="s <= review.rating ? ['fas','star'] : ['far','star']"
+                    class="w-4 h-4 text-yellow-400"
+                />
               </div>
               <p class="font-semibold">{{ review.username }}</p>
               <p class="text-sm text-[#ccc]">{{ review.review }}</p>
@@ -89,7 +91,7 @@
       </div>
     </div>
 
-    <!-- Image Zoom Modal -->
+    <!-- Zoomed Image Modal -->
     <div v-if="zoomedImage" class="fixed inset-0 bg-black bg-opacity-90 z-50 flex justify-center items-center">
       <div class="relative">
         <img :src="zoomedImage" class="max-h-[90vh] rounded-lg border border-white shadow-2xl" />
@@ -100,7 +102,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from 'vue';
+import { ref, onMounted } from 'vue';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
@@ -121,13 +123,23 @@ const dummyReviews = [
   { username: 'Charlie', rating: 3, review: 'Good, but could’ve been shorter.' }
 ];
 
-const formattedDate = computed(() => {
-  const raw = bookData.value.publicationDate;
-  return raw ? new Date(raw).toLocaleDateString() : 'N/A';
-});
+function close() {
+  emit('close');
+}
 
-const close = () => emit('close');
-const zoomImage = img => zoomedImage.value = img;
+function zoomImage(img) {
+  zoomedImage.value = img;
+}
+
+function formatDate(dateStr) {
+  if (!dateStr) return 'N/A';
+  const date = new Date(dateStr);
+  return date.toLocaleDateString(undefined, {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  });
+}
 
 onMounted(async () => {
   try {

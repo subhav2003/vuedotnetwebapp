@@ -1,28 +1,115 @@
 <template>
-  <div class="flex flex-col min-h-screen checkout-container">
+  <div class="flex flex-col min-h-screen bg-gray-900 text-white">
     <NavBar />
 
-    <main
-        class="flex-1 max-w-6xl mx-auto py-8 px-6 grid grid-cols-1 lg:grid-cols-3 gap-8"
-    >
-      <!-- Address & Payment -->
-      <section class="col-span-2 bg-gray-50 p-6 rounded-lg shadow-lg">
-        <h2 class="text-2xl font-bold text-brown-700 mb-6">Checkout</h2>
+    <main class="flex-1 max-w-6xl mx-auto py-8 px-6 grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <!-- Cart Summary -->
+      <section class="bg-white/90 text-black p-6 rounded-lg shadow-lg lg:col-span-2">
+        <h2 class="text-2xl font-bold text-brown-700 mb-6 border-b pb-2">Review Your Cart</h2>
 
-        <AddressSelector @address-selected="handleAddressSelection" />
+        <div v-if="lines.length" class="space-y-6">
+          <div v-for="product in lines" :key="product.id" class="flex flex-col md:flex-row gap-4 border-b pb-4">
+            <div class="w-full md:w-1/4">
+              <img
+                  :src="normalizeImage(product.image)"
+                  :alt="product.title"
+                  class="rounded-md shadow-sm object-cover w-full aspect-square"
+              />
+            </div>
+            <div class="flex-1">
+              <h3 class="text-lg font-semibold text-brown-700">{{ product.title }}</h3>
+              <p class="text-gray-600 mt-1">{{ product.description || 'No description available' }}</p>
+              <div class="flex justify-between items-end mt-4">
+                <div>
+                  <p class="flex items-center gap-2">
+                    <span class="text-gray-500">Price:</span>
+                    <span class="font-medium">${{ product.price.toFixed(2) }}</span>
+                  </p>
+                  <p class="flex items-center gap-2">
+                    <span class="text-gray-500">Quantity:</span>
+                    <span class="font-medium">{{ product.quantity }}</span>
+                  </p>
+                </div>
+                <p class="text-lg font-bold text-brown-700">
+                  ${{ (product.price * product.quantity).toFixed(2) }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
 
-        <PaymentMethodSelector @payment-selected="handlePaymentSelection" />
+        <div v-else class="bg-gray-100 p-8 text-center rounded-lg">
+          <p class="text-gray-500">Your cart is empty.</p>
+          <router-link to="/shop" class="mt-4 inline-block px-6 py-2 bg-brown-600 text-white rounded hover:bg-brown-700 transition">
+            Continue Shopping
+          </router-link>
+        </div>
       </section>
 
-      <!-- Cart Summary -->
-      <section class="bg-gray-50 p-6 rounded-lg shadow-lg">
-        <h2 class="text-2xl font-bold text-brown-700 mb-6">
-          Review Your Cart
-        </h2>
-        <CartSummary
-            :isPayNowEnabled="isPayNowEnabled"
-            @pay-now="payNow"
-        />
+      <!-- Order Summary -->
+      <section class="bg-white/90 text-black p-6 rounded-lg shadow-lg h-fit sticky top-8">
+        <h2 class="text-xl font-bold text-brown-700 mb-4 pb-2 border-b">Order Summary</h2>
+
+        <div class="space-y-3 mb-6">
+          <div class="flex justify-between">
+            <span class="text-gray-600">Subtotal</span>
+            <span>${{ totalAmount.toFixed(2) }}</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-gray-600">Shipping</span>
+            <span>Free</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-gray-600">Tax</span>
+            <span>${{ (totalAmount * 0.07).toFixed(2) }}</span>
+          </div>
+          <div class="flex justify-between font-bold text-lg pt-2 border-t">
+            <span>Total</span>
+            <span>${{ (totalAmount + totalAmount * 0.07).toFixed(2) }}</span>
+          </div>
+        </div>
+
+        <!-- Address Selection -->
+        <div class="mb-6">
+          <label class="block text-gray-700 mb-2 font-medium">Select Shipping Address</label>
+          <select
+              v-model="selectedAddress"
+              class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-brown-300"
+          >
+            <option value="">Select an address</option>
+            <option value="home">Home</option>
+            <option value="work">Work</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <!-- Payment Method Selection -->
+        <div class="mb-6">
+          <label class="block text-gray-700 mb-2 font-medium">Select Payment Method</label>
+          <div class="space-y-2">
+            <label class="flex items-center gap-2">
+              <input type="radio" value="credit" v-model="paymentMethod" />
+              <span>Credit Card</span>
+            </label>
+            <label class="flex items-center gap-2">
+              <input type="radio" value="paypal" v-model="paymentMethod" />
+              <span>PayPal</span>
+            </label>
+            <label class="flex items-center gap-2">
+              <input type="radio" value="cod" v-model="paymentMethod" />
+              <span>Cash on Delivery</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Pay Now -->
+        <button
+            @click="payNow"
+            :disabled="!isPayNowEnabled"
+            class="w-full px-6 py-3 bg-brown-600 text-white rounded-md hover:bg-brown-700 transition font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          Pay Now
+        </button>
       </section>
     </main>
 
@@ -32,107 +119,54 @@
 
 <script setup>
 import { ref, computed } from 'vue'
-import axios from 'axios'
+import { useCart } from '@/store/useCart'
 import NavBar from '@/components/NavBar.vue'
 import Footer from '@/components/Footer.vue'
-import AddressSelector from '@/components/AddressSelector.vue'
-import PaymentMethodSelector from '@/components/PaymentMethodSelector.vue'
-import CartSummary from '@/components/CartSummary.vue'
 
-const API_BASE_URL = process.env.VUE_APP_API_URL
+const { cartItems } = useCart()
+const baseUrl = process.env.VUE_APP_API_URL || window.location.origin
 
-const selectedAddress = ref(null)
-function handleAddressSelection(id) {
-  selectedAddress.value = id
+function normalizeImage(path) {
+  if (!path) return '/fallback.png'
+  if (/^https?:\/\//.test(path)) return path
+  return `${baseUrl.replace(/\/$/, '')}${path.startsWith('/') ? '' : '/'}${path}`
 }
 
-const paymentMethod = ref(null)
-function handlePaymentSelection(method) {
-  paymentMethod.value = method
-}
-
-const isPayNowEnabled = computed(
-    () => !!selectedAddress.value && !!paymentMethod.value
+const lines = computed(() =>
+    cartItems.value.map(item => ({
+      id: item.product.id,
+      title: item.product.title,
+      price: item.product.price,
+      quantity: item.quantity,
+      image: Array.isArray(item.product.images) && item.product.images.length ? item.product.images[0] : '',
+      description: item.product.description
+    }))
 )
 
-const createdOrderId = ref(null)
+const totalAmount = computed(() =>
+    lines.value.reduce((sum, item) => sum + item.price * item.quantity, 0)
+)
 
-async function createOrder() {
-  const token = localStorage.getItem('authToken')
-  const payload = {
-    address_id: selectedAddress.value,
-    payment_method: paymentMethod.value,
-  }
-  const resp = await axios.post(
-      `${API_BASE_URL}/api/v1/createorder`,
-      payload,
-      { headers: { Authorization: `Bearer ${token}` } }
-  )
-  createdOrderId.value = resp.data.id
-  return resp.data
-}
+const selectedAddress = ref('')
+const paymentMethod = ref('')
+const isPayNowEnabled = computed(() => !!selectedAddress.value && !!paymentMethod.value)
 
 async function payNow() {
-  try {
-    if (!createdOrderId.value) {
-      await createOrder()
-    }
-    const token = localStorage.getItem('authToken')
-    const payResp = await axios.get(
-        `${API_BASE_URL}/api/v1/orders/${createdOrderId.value}/pay/esewa`,
-        { headers: { Authorization: `Bearer ${token}` } }
-    )
-
-    const form = document.createElement('form')
-    form.method = 'POST'
-    form.action =
-        'https://rc-epay.esewa.com.np/api/epay/main/v2/form'
-
-    Object.entries(payResp.data).forEach(([k, v]) => {
-      const inp = document.createElement('input')
-      inp.type = 'hidden'
-      inp.name = k
-      inp.value = v
-      form.appendChild(inp)
-    })
-
-    document.body.appendChild(form)
-    form.submit()
-  } catch (err) {
-    console.error('Payment initiation failed', err)
-    alert('Failed to initiate payment. Please try again.')
-  }
+  alert(`Payment initiated using ${paymentMethod.value} at ${selectedAddress.value} address`)
 }
 </script>
 
 <style scoped>
-.checkout-container {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  background-image: url('@/assets/checkout.webp');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+.bg-brown-600 {
+  background-color: #a0522d;
 }
-.bg-gray-50 {
-  background-color: #fafafa;
+.bg-brown-700 {
+  background-color: #8b4513;
 }
 .text-brown-700 {
   color: #8b4513;
 }
-/* Loader for address selector */
-.loader {
-  border: 3px solid #f3f3f3;
-  border-top: 3px solid #A0522D;
-  border-radius: 50%;
-  width: 2rem;
-  height: 2rem;
-  animation: spin 1s linear infinite;
-}
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
+.ring-brown-300 {
+  --tw-ring-color: rgba(160, 82, 45, 0.3);
 }
 </style>

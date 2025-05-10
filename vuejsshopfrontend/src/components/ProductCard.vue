@@ -1,8 +1,30 @@
 <template>
   <div
       v-if="book"
-      class="max-w-xs w-full mx-auto bg-[#1a1a1a] rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out text-[#C8B280]"
+      class="relative max-w-xs w-full mx-auto bg-[#1a1a1a] rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out text-[#C8B280]"
   >
+    <!-- Banners -->
+    <div class="absolute top-2 left-2 flex flex-col gap-2 z-10">
+      <div
+          v-if="isForSale"
+          class="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md animate-pulse"
+      >
+        SALE - {{ Math.round(book.discountPercentage) }}% OFF
+      </div>
+      <div
+          v-if="book.stock < 1"
+          class="bg-gray-800 text-white text-xs font-bold px-3 py-1 rounded-full shadow"
+      >
+        OUT OF STOCK
+      </div>
+      <div
+          v-if="book.isExclusiveEdition"
+          class="bg-yellow-400 text-black text-xs font-bold px-3 py-1 rounded-full shadow"
+      >
+        EXCLUSIVE
+      </div>
+    </div>
+
     <!-- Image Carousel -->
     <div class="relative w-full aspect-[4/3] bg-[#2a2a2a] flex items-center justify-center overflow-hidden rounded-t-lg">
       <div
@@ -22,7 +44,6 @@
         </div>
       </div>
 
-      <!-- Carousel Arrows -->
       <button
           v-if="imageList.length > 1"
           @click.stop="prevImage"
@@ -50,8 +71,13 @@
         {{ book.title }}
       </h2>
 
-      <!-- Rating (optional placeholder for now) -->
-      <div class="flex items-center space-x-1 mb-3 mt-1">
+      <!-- Author -->
+      <p class="text-sm text-[#d1c2a0] mb-1 truncate" :title="book.author">
+        by: {{ book.author }}
+      </p>
+
+      <!-- Rating (static for now) -->
+      <div class="flex items-center space-x-1 mb-3">
         <font-awesome-icon
             v-for="starIndex in 5"
             :key="starIndex"
@@ -75,7 +101,7 @@
 import { ref, defineProps, defineEmits, onMounted, computed } from 'vue';
 
 const props = defineProps({
-  book: { type: Object, required: true },
+  book: { type: Object, required: true }
 });
 const emit = defineEmits(['showBookDetail']);
 
@@ -114,6 +140,15 @@ onMounted(() => {
 });
 
 const emitDetail = () => emit('showBookDetail', props.book);
+
+const isForSale = computed(() => {
+  const now = new Date();
+  return (
+      props.book.isOnSale &&
+      new Date(props.book.discountStart) <= now &&
+      new Date(props.book.discountEnd) >= now
+  );
+});
 </script>
 
 <style scoped>

@@ -83,8 +83,17 @@ namespace Pustakalaya.Controllers
                     DiscountPercentage = b.DiscountPercentage,
                     DiscountStart = b.DiscountStart,
                     DiscountEnd = b.DiscountEnd,
+                    Description = b.Description,
+                    Publisher = b.Publisher,
+                    BookType = b.BookType,
+                    IsExclusiveEdition = b.IsExclusiveEdition,
+                    AverageRating = b.AverageRating,
+                    TotalSold = b.TotalSold,
+                    CreatedAt = b.CreatedAt,
+                    UpdatedAt = b.UpdatedAt,
                     Images = b.Images.Select(img => img.Url).ToList()
                 })
+
                 .FirstOrDefaultAsync();
 
             if (book == null)
@@ -116,11 +125,21 @@ namespace Pustakalaya.Controllers
                 IsPhysicalAccess = dto.IsPhysicalAccess,
                 PublicationDate = ToUtc(dto.PublicationDate),
                 Stock = dto.Stock,
+                Isbn = dto.Isbn,
+                Description = dto.Description,
+                Publisher = dto.Publisher,
+                BookType = dto.BookType,
+                IsExclusiveEdition = dto.IsExclusiveEdition,
+                IsOnSale = dto.IsOnSale,
+                DiscountPercentage = dto.DiscountPercentage,
+                DiscountStart = ToUtc(dto.DiscountStart),
+                DiscountEnd = ToUtc(dto.DiscountEnd),
                 AdminId = adminId,
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow,
                 Images = new List<BookImage>()
             };
+
 
             if (images != null)
             {
@@ -168,6 +187,15 @@ namespace Pustakalaya.Controllers
             existing.PublicationDate = ToUtc(dto.PublicationDate);
             existing.IsPhysicalAccess = dto.IsPhysicalAccess;
             existing.Stock = dto.Stock;
+            existing.Isbn = dto.Isbn;
+            existing.Description = dto.Description;
+            existing.Publisher = dto.Publisher;
+            existing.BookType = dto.BookType;
+            existing.IsExclusiveEdition = dto.IsExclusiveEdition;
+            existing.IsOnSale = dto.IsOnSale;
+            existing.DiscountPercentage = dto.DiscountPercentage;
+            existing.DiscountStart = ToUtc(dto.DiscountStart);
+            existing.DiscountEnd = ToUtc(dto.DiscountEnd);
             existing.UpdatedAt = DateTime.UtcNow;
 
             if (deleteImages != null)

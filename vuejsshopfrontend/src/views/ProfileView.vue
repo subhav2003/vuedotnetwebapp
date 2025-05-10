@@ -16,14 +16,7 @@
         <OrderHistory @view-order="viewOrderDetails" />
 
         <!-- Custom Order History (shown only if user is artisan and has custom orders) -->
-        <div class="mt-8" >
-          <!-- Now both view-details and view-finalization always open the FinalizedOrder overlay -->
-          <CustomOrderHistory
-              :orders="customOrders"
-              @view-details="viewCustomInFinal"
-              @view-finalization="viewCustomInFinal"
-          />
-        </div>
+      
       </div>
     </div>
 

@@ -9,33 +9,32 @@ namespace Pustakalaya.Helpers
 {
     public class JwtTokenHelper
     {
-        private readonly IConfiguration _configuration;
+        private readonly IConfiguration _config;
 
-        public JwtTokenHelper(IConfiguration configuration)
-        {
-            _configuration = configuration;
-        }
+        public JwtTokenHelper(IConfiguration config) => _config = config;
 
         public string GenerateToken(string userId, string email, string role)
         {
-            var jwtSettings = _configuration.GetSection("Jwt");
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings["Key"]));
-            var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            var jwt = _config.GetSection("Jwt");
+
+            var key   = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwt["Key"]));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
             var claims = new[]
             {
                 new Claim(JwtRegisteredClaimNames.Sub, userId),
+                new Claim(ClaimTypes.NameIdentifier,   userId),          // easy lookup
                 new Claim(JwtRegisteredClaimNames.Email, email),
-                new Claim(ClaimTypes.Role, role),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+                new Claim(ClaimTypes.Role,               role),
+                new Claim(JwtRegisteredClaimNames.Jti,   Guid.NewGuid().ToString())
             };
 
             var token = new JwtSecurityToken(
-                issuer: jwtSettings["Issuer"],
-                audience: jwtSettings["Audience"],
-                claims: claims,
-                expires: DateTime.UtcNow.AddMinutes(Convert.ToDouble(jwtSettings["ExpiresInMinutes"])),
-                signingCredentials: credentials
+                issuer:    jwt["Issuer"],
+                audience:  jwt["Audience"],
+                claims:    claims,
+                expires:   DateTime.UtcNow.AddMinutes(double.Parse(jwt["ExpiresInMinutes"])),
+                signingCredentials: creds
             );
 
             return new JwtSecurityTokenHandler().WriteToken(token);
