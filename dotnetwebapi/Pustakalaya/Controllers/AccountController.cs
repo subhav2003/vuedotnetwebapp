@@ -1,13 +1,13 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using System.Security.Claims;
-using System.IdentityModel.Tokens.Jwt;
+using System;
+using System.Threading.Tasks;
 using Pustakalaya.Data;
 using Pustakalaya.Helpers;
 using Pustakalaya.Models;
-using System;
-using System.Threading.Tasks;
 
 namespace Pustakalaya.Controllers
 {
@@ -15,44 +15,40 @@ namespace Pustakalaya.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
-        private readonly AppDbContext   _context;
-        private readonly JwtTokenHelper _jwt;
-        private readonly EmailService   _emailSvc;
+        private readonly AppDbContext _context;
+        private readonly JwtTokenHelper _jwtTokenHelper;
 
-        public AccountController(AppDbContext   context,
-                                 JwtTokenHelper jwt,
-                                 EmailService   emailSvc)
+        public AccountController(AppDbContext context, JwtTokenHelper jwtTokenHelper)
         {
-            _context  = context;
-            _jwt      = jwt;
-            _emailSvc = emailSvc;
+            _context = context;
+            _jwtTokenHelper = jwtTokenHelper;
         }
 
-    // ───────────────────────────────────────── SIGN‑UP ─────────────────────────────────────────
-
-        [HttpPost("signup")]                  // MEMBER
-        public async Task<IActionResult> Signup([FromBody] SignupDto dto)
+        // === MEMBER SIGNUP ===
+        [HttpPost("signup")]
+        public async Task<IActionResult> Signup([FromBody] SignupDto signup)
         {
-            if (dto.Role?.ToLower() != "member")
+            if (signup.Role?.ToLower() != "member")
                 return BadRequest(new { message = "Only 'member' registration allowed from this route." });
 
-            if (await _context.Members.AnyAsync(m => m.Email == dto.Email))
+            if (await _context.Members.AnyAsync(m => m.Email == signup.Email))
                 return BadRequest(new { message = "Member email already exists." });
 
-            if (await _context.Members.AnyAsync(m => m.Username == dto.Username))
+            if (await _context.Members.AnyAsync(m => m.Username == signup.Username))
                 return BadRequest(new { message = "Username already taken." });
 
             var now = DateTime.UtcNow;
-
             var member = new Member
             {
-                Name               = dto.Name,
-                Username           = dto.Username,
-                Email              = dto.Email,
-                Password           = BCrypt.Net.BCrypt.HashPassword(dto.Password),
-                Phone              = dto.Phone,
-                Gender             = dto.Gender,
-                DateOfBirth        = dto.DateOfBirth?.ToUniversalTime(),
+                Name               = signup.Name,
+                Username           = signup.Username,
+                Email              = signup.Email,
+                Password           = BCrypt.Net.BCrypt.HashPassword(signup.Password),
+                Phone              = signup.Phone,
+                Gender             = signup.Gender,
+                DateOfBirth        = signup.DateOfBirth.HasValue
+                                        ? DateTime.SpecifyKind(signup.DateOfBirth.Value, DateTimeKind.Utc)
+                                        : (DateTime?)null,
                 MembershipId       = Guid.NewGuid().ToString(),
                 MembershipStatus   = "Active",
                 DateOfRegistration = now,
@@ -63,8 +59,7 @@ namespace Pustakalaya.Controllers
             _context.Members.Add(member);
             await _context.SaveChangesAsync();
 
-            var token = _jwt.GenerateToken(member.Id.ToString(), member.Email, "member");
-
+            var token = _jwtTokenHelper.GenerateToken(member.Id.ToString(), member.Email, "member");
             var user = new
             {
                 member.Id,
@@ -86,132 +81,23 @@ namespace Pustakalaya.Controllers
             return Ok(new { token, user });
         }
 
-        [HttpPost("admin/register")]          // ADMIN SIGN‑UP
-        public async Task<IActionResult> RegisterAdmin([FromBody] AdminRegisterDto dto)
+        // === LOGIN ===
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] LoginDto login)
         {
-            if (await _context.Admins.AnyAsync(a => a.Email == dto.Email))
-                return BadRequest(new { message = "Admin email already exists." });
+            var role = login.Role?.ToLower();
+            if (role != "member")
+                return BadRequest(new { message = "Invalid role. Must be 'member'." });
 
-            var admin = new Admin
-            {
-                Name      = dto.Name,
-                Email     = dto.Email,
-                Password  = BCrypt.Net.BCrypt.HashPassword(dto.Password),
-                Phone     = dto.Phone,
-                Role      = "admin",
-                CreatedAt = DateTime.UtcNow,
-                UpdatedAt = DateTime.UtcNow
-            };
+            var member = await _context.Members.FirstOrDefaultAsync(m => m.Email == login.Email);
+            if (member == null || !BCrypt.Net.BCrypt.Verify(login.Password, member.Password))
+                return Unauthorized(new { message = "Invalid email or password." });
 
-            _context.Admins.Add(admin);
+            member.LastLogin = DateTime.UtcNow;
+            member.UpdatedAt = DateTime.UtcNow;
             await _context.SaveChangesAsync();
 
-            var token = _jwt.GenerateToken(admin.Id.ToString(), admin.Email, "admin");
-
-            var user = new
-            {
-                admin.Id,
-                admin.Name,
-                admin.Email,
-                admin.Phone,
-                admin.CreatedAt,
-                admin.UpdatedAt,
-                role = "admin"
-            };
-
-            return Ok(new { token, user });
-        }
-
-    // ───────────────────────────────────────── LOGIN ───────────────────────────────────────────
-
-        [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] LoginDto dto)
-        {
-            var role = dto.Role?.ToLower();
-
-            if (role == "member")
-            {
-                var m = await _context.Members.FirstOrDefaultAsync(u => u.Email == dto.Email);
-                if (m == null || !BCrypt.Net.BCrypt.Verify(dto.Password, m.Password))
-                    return Unauthorized(new { message = "Invalid email or password." });
-
-                m.LastLogin = m.UpdatedAt = DateTime.UtcNow;
-                await _context.SaveChangesAsync();
-
-                var token = _jwt.GenerateToken(m.Id.ToString(), m.Email, "member");
-
-                var user = new
-                {
-                    m.Id, m.Name, m.Username, m.Email, m.Phone, m.Gender,
-                    m.DateOfBirth, m.DateOfRegistration, m.MembershipId,
-                    m.MembershipStatus, m.LastLogin, m.CreatedAt, m.UpdatedAt,
-                    role = "member"
-                };
-                return Ok(new { token, user });
-            }
-
-            if (role == "admin")
-            {
-                var a = await _context.Admins.FirstOrDefaultAsync(u => u.Email == dto.Email);
-                if (a == null || !BCrypt.Net.BCrypt.Verify(dto.Password, a.Password))
-                    return Unauthorized(new { message = "Invalid email or password." });
-
-                a.UpdatedAt = DateTime.UtcNow;
-                await _context.SaveChangesAsync();
-
-                var token = _jwt.GenerateToken(a.Id.ToString(), a.Email, "admin");
-
-                var user = new
-                {
-                    a.Id, a.Name, a.Email, a.Phone,
-                    a.CreatedAt, a.UpdatedAt,
-                    role = "admin"
-                };
-                return Ok(new { token, user });
-            }
-
-            return BadRequest(new { message = "Invalid role. Must be 'admin' or 'member'." });
-        }
-
-    // ────────────────────────────────── FORGOT PASSWORD ─────────────────────────────────────────
-
-        [HttpPost("forgot")]
-        public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordDto dto)
-        {
-            var member = await _context.Members.FirstOrDefaultAsync(u => u.Email == dto.Email);
-            if (member == null) return NotFound(new { error = "Email not found" });
-
-            var code = Guid.NewGuid().ToString("N")[..8].ToUpper();
-            var body = $"Hello,\n\nUse this code to reset your password: {code}\n\n– Pustakalaya Team";
-            await _emailSvc.SendEmailAsync(member.Email, "Reset Your Password", body);
-
-            return Ok(new { message = "Reset code sent. Please check your email." });
-        }
-
-    // ─────────────────────────────── GET AUTHENTICATED PROFILE ──────────────────────────────────
-
-    [Authorize]
-    [HttpGet("profile")]
-    public async Task<IActionResult> GetProfile()
-    {
-        // 1. read the user id from the token
-        var userIdValue = User.FindFirstValue(ClaimTypes.NameIdentifier)
-                          ??  User.FindFirstValue(JwtRegisteredClaimNames.Sub);
-
-        if (!long.TryParse(userIdValue, out var userId))
-            return Unauthorized(new { message = "Invalid token user id." });
-
-        var role = User.FindFirstValue(ClaimTypes.Role);
-
-        // 2. query the correct table with a long key
-        if (role == "member")
-        {
-            var member = await _context.Members
-                .AsNoTracking()
-                .FirstOrDefaultAsync(m => m.Id == userId);
-            if (member == null)
-                return NotFound(new { message = "Member not found." });
-
+            var token = _jwtTokenHelper.GenerateToken(member.Id.ToString(), member.Email, "member");
             var user = new
             {
                 member.Id,
@@ -229,64 +115,148 @@ namespace Pustakalaya.Controllers
                 member.UpdatedAt,
                 role = "member"
             };
-            return Ok(new { user });
+
+            return Ok(new { token, user });
         }
 
-        if (role == "admin")
+        // === GET PROFILE ===
+        [Authorize]
+        [HttpGet("profile")]
+        public async Task<IActionResult> GetProfile()
         {
-            var admin = await _context.Admins
-                .AsNoTracking()
-                .FirstOrDefaultAsync(a => a.Id == userId);
-            if (admin == null)
-                return NotFound(new { message = "Admin not found." });
+            var idClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            if (string.IsNullOrEmpty(idClaim) || !long.TryParse(idClaim, out var userId))
+                return Unauthorized(new { message = "Invalid or missing token." });
 
-            var user = new
+            var member = await _context.Members.AsNoTracking().FirstOrDefaultAsync(m => m.Id == userId);
+            if (member == null)
+                return NotFound(new { message = "User not found." });
+
+            var dto = new ProfileDto
             {
-                admin.Id,
-                admin.Name,
-                admin.Email,
-                admin.Phone,
-                admin.CreatedAt,
-                admin.UpdatedAt,
-                role = "admin"
+                Id                 = member.Id,
+                Name               = member.Name,
+                Username           = member.Username,
+                Email              = member.Email,
+                Phone              = member.Phone,
+                Gender             = member.Gender,
+                DateOfBirth        = member.DateOfBirth?.ToString("yyyy-MM-dd"),
+                DateOfRegistration = member.DateOfRegistration.ToString("yyyy-MM-dd"),
+                MembershipId       = member.MembershipId,
+                MembershipStatus   = member.MembershipStatus,
+                LastLogin          = member.LastLogin?.ToString("o")
             };
-            return Ok(new { user });
+
+            // Wrap in `user` so front-end expects data.user
+            return Ok(new { user = dto });
         }
 
-        return BadRequest(new { message = "Unsupported role." });
+        // === UPDATE PROFILE ===
+        [Authorize]
+        [HttpPut("profile")]
+        public async Task<IActionResult> UpdateProfile([FromBody] UpdateProfileDto dto)
+        {
+            var idClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            if (string.IsNullOrEmpty(idClaim) || !long.TryParse(idClaim, out var userId))
+                return Unauthorized(new { message = "Invalid token." });
+
+            var member = await _context.Members.FirstOrDefaultAsync(m => m.Id == userId);
+            if (member == null)
+                return NotFound(new { message = "User not found." });
+
+            // Unique checks
+            if (!string.Equals(dto.Email, member.Email, StringComparison.OrdinalIgnoreCase)
+                && await _context.Members.AnyAsync(m => m.Email == dto.Email && m.Id != userId))
+                return BadRequest(new { message = "Email already in use." });
+
+            if (!string.Equals(dto.Username, member.Username, StringComparison.OrdinalIgnoreCase)
+                && await _context.Members.AnyAsync(m => m.Username == dto.Username && m.Id != userId))
+                return BadRequest(new { message = "Username already taken." });
+
+            // Apply updates
+            member.Name        = dto.Name;
+            member.Username    = dto.Username;
+            member.Email       = dto.Email;
+            member.Phone       = dto.Phone;
+            member.Gender      = dto.Gender;
+            member.DateOfBirth = dto.DateOfBirth.HasValue
+                ? DateTime.SpecifyKind(dto.DateOfBirth.Value, DateTimeKind.Utc)
+                : (DateTime?)null;
+
+            // Optional password change
+            if (!string.IsNullOrWhiteSpace(dto.Password))
+            {
+                if (dto.Password != dto.PasswordConfirmation)
+                    return BadRequest(new { message = "Passwords do not match." });
+                member.Password = BCrypt.Net.BCrypt.HashPassword(dto.Password);
+            }
+
+            member.UpdatedAt = DateTime.UtcNow;
+            await _context.SaveChangesAsync();
+
+            var updatedDto = new ProfileDto
+            {
+                Id                 = member.Id,
+                Name               = member.Name,
+                Username           = member.Username,
+                Email              = member.Email,
+                Phone              = member.Phone,
+                Gender             = member.Gender,
+                DateOfBirth        = member.DateOfBirth?.ToString("yyyy-MM-dd"),
+                DateOfRegistration = member.DateOfRegistration.ToString("yyyy-MM-dd"),
+                MembershipId       = member.MembershipId,
+                MembershipStatus   = member.MembershipStatus,
+                LastLogin          = member.LastLogin?.ToString("o")
+            };
+
+            return Ok(new { message = "Profile updated successfully.", user = updatedDto });
+        }
     }
 
-    // ─────────────────────────────────── DTO CLASSES ────────────────────────────────────────────
-        public class SignupDto
-        {
-            public string   Name         { get; set; } = string.Empty;
-            public string   Username     { get; set; } = string.Empty;
-            public string   Email        { get; set; } = string.Empty;
-            public string   Password     { get; set; } = string.Empty;
-            public string   Phone        { get; set; } = string.Empty;
-            public string   Gender       { get; set; } = string.Empty;
-            public DateTime? DateOfBirth { get; set; }
-            public string   Role         { get; set; } = string.Empty;
-        }
+    // === DTOs ===
+    public class SignupDto
+    {
+        public string Name { get; set; } = string.Empty;
+        public string Username { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
+        public string Password { get; set; } = string.Empty;
+        public string Phone { get; set; } = string.Empty;
+        public string Gender { get; set; } = string.Empty;
+        public DateTime? DateOfBirth { get; set; }
+        public string Role { get; set; } = string.Empty;
+    }
 
-        public class AdminRegisterDto
-        {
-            public string Name     { get; set; } = string.Empty;
-            public string Email    { get; set; } = string.Empty;
-            public string Password { get; set; } = string.Empty;
-            public string Phone    { get; set; } = string.Empty;
-        }
+    public class LoginDto
+    {
+        public string Email { get; set; } = string.Empty;
+        public string Password { get; set; } = string.Empty;
+        public string Role { get; set; } = string.Empty;
+    }
 
-        public class LoginDto
-        {
-            public string Email    { get; set; } = string.Empty;
-            public string Password { get; set; } = string.Empty;
-            public string Role     { get; set; } = string.Empty;
-        }
+    public class ProfileDto
+    {
+        public long   Id                 { get; set; }
+        public string Name               { get; set; } = default!;
+        public string Username           { get; set; } = default!;
+        public string Email              { get; set; } = default!;
+        public string Phone              { get; set; } = default!;
+        public string Gender             { get; set; } = default!;
+        public string? DateOfBirth       { get; set; }
+        public string DateOfRegistration { get; set; } = default!;
+        public string MembershipId       { get; set; } = default!;
+        public string MembershipStatus   { get; set; } = default!;
+        public string? LastLogin         { get; set; }
+    }
 
-        public class ForgotPasswordDto
-        {
-            public string Email { get; set; } = string.Empty;
-        }
+    public class UpdateProfileDto
+    {
+        public string Name                  { get; set; } = default!;
+        public string Username              { get; set; } = default!;
+        public string Email                 { get; set; } = default!;
+        public string Phone                 { get; set; } = default!;
+        public string Gender                { get; set; } = default!;
+        public DateTime? DateOfBirth        { get; set; }
+        public string? Password             { get; set; }
+        public string? PasswordConfirmation { get; set; }
     }
 }

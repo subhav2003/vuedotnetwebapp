@@ -1,67 +1,52 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿// Program.cs
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Pustakalaya.Data;
-using System.Text;
 using Pustakalaya.Helpers;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add database context with PostgreSQL
+// 1) Configure PostgreSQL DbContext
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Add controllers
-builder.Services.AddControllers();
+// 2) Register JwtTokenHelper
+builder.Services.AddScoped<JwtTokenHelper>();
 
-// Add Swagger for API documentation
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+// 3) CORS (allow your frontend origin or use “AllowAll” in development)
+builder.Services.AddCors(o => o.AddPolicy("AllowAll", p =>
+    p.AllowAnyOrigin()
+        .AllowAnyMethod()
+        .AllowAnyHeader()));
 
-// Configure CORS to allow all origins, headers, and methods
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowAll", policy =>
-        policy.AllowAnyOrigin()
-            .AllowAnyMethod()
-            .AllowAnyHeader());
-});
-
-// Configure JWT authentication
-var jwtSettings = builder.Configuration.GetSection("Jwt");
-builder.Services.AddAuthentication(options =>
-    {
-        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-    })
+// 4) JWT Authentication
+var jwt = builder.Configuration.GetSection("Jwt");
+builder.Services
+    .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
         options.TokenValidationParameters = new TokenValidationParameters
         {
-            ValidateIssuer = true,
-            ValidateAudience = true,
-            ValidateLifetime = true,
+            ValidateIssuer           = true,
+            ValidIssuer              = jwt["Issuer"],
+            ValidateAudience         = true,
+            ValidAudience            = jwt["Audience"],
+            ValidateLifetime         = true,
             ValidateIssuerSigningKey = true,
-            ValidIssuer = jwtSettings["Issuer"],
-            ValidAudience = jwtSettings["Audience"],
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings["Key"]))
+            IssuerSigningKey         = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwt["Key"]))
         };
     });
-// Add JwtTokenHelper service
-builder.Services.AddSingleton<JwtTokenHelper>();
 
+// 5) MVC + Swagger
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
-builder.Services.Configure<EmailSetting>(
-    builder.Configuration.GetSection("EmailSettings")
-);
-
-builder.Services.AddScoped<EmailService>();
-
-
-// Build the application
 var app = builder.Build();
 
-// Configure middleware pipeline
+// Middleware pipeline
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -69,13 +54,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
-app.UseStaticFiles(); 
 app.UseCors("AllowAll");
 
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-
 app.Run();
