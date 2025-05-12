@@ -4,7 +4,7 @@
 
     <!-- Header -->
     <div class="flex justify-between items-center mb-6">
-      <h2 class="text-3xl font-semibold text-[#F5DEB3] font-papyrus">Admin Order History</h2>
+      <h2 class="text-3xl font-semibold text-[#F5DEB3] ">Order History</h2>
       <button @click="fetchOrders" class="flex items-center text-sm text-[#C8B280] hover:text-white transition">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.253 6A9 9 0 115.334 5.334M20 20v-5h-.581" />

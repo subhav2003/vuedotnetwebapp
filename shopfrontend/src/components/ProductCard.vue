@@ -76,14 +76,24 @@
         by: {{ book.author }}
       </p>
 
-      <!-- Rating (static for now) -->
       <div class="flex items-center space-x-1 mb-3">
-        <font-awesome-icon
-            v-for="starIndex in 5"
-            :key="starIndex"
-            :icon="['far', 'star']"
-            class="w-4 h-4 text-yellow-400"
-        />
+        <template v-for="n in 5" :key="n">
+          <font-awesome-icon
+              v-if="n <= Math.floor(book.averageRating)"
+              :icon="['fas', 'star']"
+              class="w-4 h-4 text-yellow-400"
+          />
+          <font-awesome-icon
+              v-else-if="n - book.averageRating < 1"
+              :icon="['fas', 'star-half-alt']"
+              class="w-4 h-4 text-yellow-400"
+          />
+          <font-awesome-icon
+              v-else
+              :icon="['far', 'star']"
+              class="w-4 h-4 text-yellow-400"
+          />
+        </template>
       </div>
 
       <!-- Price + Slot for buttons -->

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "dcDjJ58VLDEssjbf3Iqwe4tOkxXrI9JQFRqdwpX0zds=",
+  "Hash": "qs6RVbJnbV942EhTRvY0eB7505/OQ0GQGYdA8LPGBw4=",
   "Source": "Pustakalaya",
   "BasePath": "_content/Pustakalaya",
   "Mode": "Default",
@@ -55,6 +55,25 @@
       "OriginalItemSpec": "wwwroot\\images\\books\\28336da0-de00-4e7c-8f10-a9634c69d3fb.webp"
     },
     {
+      "Identity": "D:\\vuedotnetwebapp\\WebApplication2\\Pustakalaya\\wwwroot\\images\\books\\2c3c1992-0881-45bd-b6af-1f82df89d659.webp",
+      "SourceId": "Pustakalaya",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\vuedotnetwebapp\\WebApplication2\\Pustakalaya\\wwwroot\\",
+      "BasePath": "_content/Pustakalaya",
+      "RelativePath": "images/books/2c3c1992-0881-45bd-b6af-1f82df89d659.webp",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\books\\2c3c1992-0881-45bd-b6af-1f82df89d659.webp"
+    },
+    {
       "Identity": "D:\\vuedotnetwebapp\\WebApplication2\\Pustakalaya\\wwwroot\\images\\books\\340dde64-2b76-4ab4-ad9d-9a2d12249a2a.webp",
       "SourceId": "Pustakalaya",
       "SourceType": "Discovered",
@@ -91,6 +110,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\books\\4dfd1998-374b-4610-8c93-0b52ba74608c.webp"
+    },
+    {
+      "Identity": "D:\\vuedotnetwebapp\\WebApplication2\\Pustakalaya\\wwwroot\\images\\books\\59c109ca-5fa8-4de8-a1d1-2b533667ca95.webp",
+      "SourceId": "Pustakalaya",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\vuedotnetwebapp\\WebApplication2\\Pustakalaya\\wwwroot\\",
+      "BasePath": "_content/Pustakalaya",
+      "RelativePath": "images/books/59c109ca-5fa8-4de8-a1d1-2b533667ca95.webp",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\books\\59c109ca-5fa8-4de8-a1d1-2b533667ca95.webp"
     },
     {
       "Identity": "D:\\vuedotnetwebapp\\WebApplication2\\Pustakalaya\\wwwroot\\images\\books\\5ea7d497-cbac-448a-a867-f056087a16a0.webp",

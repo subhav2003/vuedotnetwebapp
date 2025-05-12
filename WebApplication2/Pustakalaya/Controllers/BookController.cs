@@ -51,6 +51,14 @@ namespace Pustakalaya.Controllers
                     DiscountPercentage = b.DiscountPercentage,
                     DiscountStart = b.DiscountStart,
                     DiscountEnd = b.DiscountEnd,
+                    Description = b.Description,
+                    Publisher = b.Publisher,
+                    BookType = b.BookType,
+                    IsExclusiveEdition = b.IsExclusiveEdition,
+                    AverageRating = b.AverageRating,
+                    TotalSold = b.TotalSold,
+                    CreatedAt = b.CreatedAt,
+                    UpdatedAt = b.UpdatedAt,
                     Images = b.Images.Select(img => img.Url).ToList()
                 })
                 .ToListAsync();
