@@ -10,6 +10,7 @@ namespace Pustakalaya.Data
         public DbSet<Member> Members { get; set; }
         public DbSet<Admin> Admins { get; set; }
         public DbSet<Book> Books { get; set; }
+        public DbSet<Bookmark> Bookmarks { get; set; }
         public DbSet<Genre> Genres { get; set; }
         public DbSet<Cart> Carts { get; set; }
         public DbSet<CartItem> CartItems { get; set; }
@@ -85,7 +86,7 @@ namespace Pustakalaya.Data
             // CartItem ↔ Book
             modelBuilder.Entity<CartItem>()
                 .HasOne(i => i.Book)
-                .WithMany()
+                .WithMany(b => b.CartItems)
                 .HasForeignKey(i => i.BookId)
                 .OnDelete(DeleteBehavior.Cascade);
 
@@ -101,6 +102,13 @@ namespace Pustakalaya.Data
                 .HasOne(i => i.Book)
                 .WithMany()
                 .HasForeignKey(i => i.BookId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // Bookmark ↔ Member
+            modelBuilder.Entity<Bookmark>()
+                .HasOne(b => b.Member)
+                .WithMany(m => m.Bookmarks)
+                .HasForeignKey(b => b.MemberId)
                 .OnDelete(DeleteBehavior.Cascade);
         }
     }

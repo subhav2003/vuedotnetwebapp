@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col min-h-screen bg-[#0f0f0f] text-[#C8B280]">
+  <div class="flex flex-col min-h-screen bg-gray-900 text-[#C8B280]">
     <!-- Navbar -->
     <NavBar />
 
@@ -66,7 +66,7 @@ const isArtisan = computed(() => user.value?.role === 'artisan');
 const fetchUser = async () => {
   try {
     const token = localStorage.getItem('authToken');
-    const res = await fetch(`${process.env.VUE_APP_API_URL}/api/v1/user`, {
+    const res = await fetch(`${process.env.VUE_APP_API_URL}/api/account/profile`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     user.value = await res.json();
@@ -119,7 +119,7 @@ const openEditForm = () => { showEditForm.value = true; };
 const closeEditForm = () => { showEditForm.value = false; };
 const handleUserUpdated = (updated) => {
   user.value = updated;
-  showEditForm.value = false;
+  
 };
 
 onMounted(async () => {

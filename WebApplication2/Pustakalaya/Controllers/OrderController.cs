@@ -37,10 +37,10 @@ public class OrderController : ControllerBase
 
     [HttpPost]
     [Authorize(Roles = "member")]
-    public async Task<ActionResult<OrderResponseDto>> CreateOrder()
+    public async Task<ActionResult> CreateOrder()
     {
         var memberId = GetUserId();
-        if (memberId == null) return Unauthorized("Invalid member ID.");
+        if (memberId == null) return Unauthorized(new { success = false, message = "Invalid member ID." });
 
         var cart = await _context.Carts
             .Include(c => c.Items)
@@ -49,7 +49,21 @@ public class OrderController : ControllerBase
             .FirstOrDefaultAsync(c => c.MemberId == memberId);
 
         if (cart == null || cart.Items.Count == 0)
-            return BadRequest("Cart is empty.");
+            return BadRequest(new { success = false, message = "Your cart is empty." });
+
+        // Validate stock
+        foreach (var item in cart.Items)
+        {
+            if (item.Book == null)
+                return BadRequest(new { success = false, message = $"Book with ID {item.BookId} not found." });
+
+            if (item.Quantity > item.Book.Stock)
+                return BadRequest(new
+                {
+                    success = false,
+                    message = $"Not enough stock for '{item.Book.Title}'. Available: {item.Book.Stock}, Requested: {item.Quantity}"
+                });
+        }
 
         var order = new Order
         {
@@ -67,15 +81,13 @@ public class OrderController : ControllerBase
 
         foreach (var cartItem in cart.Items)
         {
-            if (cartItem.Book == null)
-                return BadRequest($"Book with ID {cartItem.BookId} not found.");
-
-            var unitPrice = cartItem.Book.Price;
+            var book = cartItem.Book!;
+            var unitPrice = book.Price;
             var lineTotal = unitPrice * cartItem.Quantity;
 
             items.Add(new OrderItem
             {
-                BookId = cartItem.BookId,
+                BookId = book.Id,
                 Quantity = cartItem.Quantity,
                 UnitPrice = unitPrice,
                 DiscountApplied = 0,
@@ -84,9 +96,14 @@ public class OrderController : ControllerBase
                 UpdatedAt = DateTime.UtcNow
             });
 
+            // Deduct stock and increase total sold
+            book.Stock -= cartItem.Quantity;
+            book.TotalSold += cartItem.Quantity;
+
             total += lineTotal;
         }
 
+        // Apply discounts
         var discounts = new List<string>();
         if (items.Sum(i => i.Quantity) >= 5)
         {
@@ -118,8 +135,14 @@ public class OrderController : ControllerBase
 
         await _context.SaveChangesAsync();
 
-        return Ok(await BuildOrderResponse(order.Id));
+        return Ok(new
+        {
+            success = true,
+            message = "Order placed successfully.",
+            data = await BuildOrderResponse(order.Id)
+        });
     }
+
 
     [HttpGet]
     [Authorize(Roles = "admin")]

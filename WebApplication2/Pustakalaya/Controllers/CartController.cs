@@ -44,13 +44,21 @@ namespace Pustakalaya.Controllers
 
             return Ok(new { cart = new { products } });
         }
-
+        
         [HttpPost("add")]
         public async Task<IActionResult> AddToCart([FromBody] AddToCartRequest request)
         {
             var memberId = GetMemberId();
+    
+            if (request.Quantity <= 0)
+                return BadRequest(new { success = false, message = "Quantity must be at least 1." });
+
             var book = await _context.Books.FindAsync(request.ProductId);
-            if (book == null) return NotFound(new { message = "Book not found." });
+            if (book == null)
+                return NotFound(new { success = false, message = "Book not found." });
+
+            if (book.Stock < request.Quantity)
+                return BadRequest(new { success = false, message = $"Only {book.Stock} copies of '{book.Title}' available." });
 
             var cart = await _context.Carts
                 .Include(c => c.Items)
@@ -71,7 +79,16 @@ namespace Pustakalaya.Controllers
             var item = cart.Items.FirstOrDefault(i => i.BookId == request.ProductId);
             if (item != null)
             {
-                item.Quantity += request.Quantity;
+                var newQuantity = item.Quantity + request.Quantity;
+
+                if (newQuantity > book.Stock)
+                    return BadRequest(new
+                    {
+                        success = false,
+                        message = $"Only {book.Stock} copies of '{book.Title}' available. You already have {item.Quantity} in your cart."
+                    });
+
+                item.Quantity = newQuantity;
                 item.UpdatedAt = DateTime.UtcNow;
             }
             else
@@ -88,26 +105,40 @@ namespace Pustakalaya.Controllers
             cart.UpdatedAt = DateTime.UtcNow;
             await _context.SaveChangesAsync();
 
-            return Ok(new { message = "Item added to cart." });
+            return Ok(new { success = true, message = "Item added to cart." });
         }
+
 
         [HttpPut("update/{productId}")]
         public async Task<IActionResult> UpdateQuantity(long productId, [FromBody] UpdateCartRequest request)
         {
             var memberId = GetMemberId();
 
+            if (request.Quantity <= 0)
+                return BadRequest(new { success = false, message = "Quantity must be at least 1." });
+
             var item = await _context.CartItems
                 .Include(i => i.Cart)
+                .Include(i => i.Book)
                 .FirstOrDefaultAsync(i => i.BookId == productId && i.Cart.MemberId == memberId);
 
-            if (item == null) return NotFound(new { message = "Item not found in cart." });
+            if (item == null)
+                return NotFound(new { success = false, message = "Item not found in cart." });
+
+            if (item.Book.Stock < request.Quantity)
+                return BadRequest(new
+                {
+                    success = false,
+                    message = $"Only {item.Book.Stock} copies of '{item.Book.Title}' available."
+                });
 
             item.Quantity = request.Quantity;
             item.UpdatedAt = DateTime.UtcNow;
             await _context.SaveChangesAsync();
 
-            return Ok(new { message = "Quantity updated." });
+            return Ok(new { success = true, message = "Quantity updated." });
         }
+
 
         [HttpDelete("remove/{productId}")]
         public async Task<IActionResult> RemoveItem(long productId)

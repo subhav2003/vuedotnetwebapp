@@ -15,6 +15,7 @@ import ProductManagementView from '@/views/Artisans/ProductManagementView.vue';
 import ProfileManagementView from '@/views/Artisans/ProfileManagementView.vue';
 import OrderManagementView from '@/views/Artisans/OrderManagementView.vue';
 import AdminView from '@/views/Admin/AdminView.vue';
+import WishListView from "@/views/WishListView.vue";
 
 const PUBLIC_NAMES = ['home', 'shop', 'connect', 'passwordreset', 'auth'];
 
@@ -30,6 +31,7 @@ const routes = [
   { path: '/payment/success', name: 'paymentsuccess', component: PaymentSuccessView },
   { path: '/custom/payment/success', name: 'custompaymentsuccess', component: CustomOrderPaySuccessView },
   { path: '/profile', name: 'profile', component: ProfileView },
+  { path: '/wishlist', name: 'wishlist', component: WishListView },
 
   // Admin routes (includes artisan pages)
   { path: '/artisan', name: 'artisan', component: ArtisanView, meta: { requiresAdmin: true } },

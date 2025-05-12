@@ -48,6 +48,8 @@ public class ReviewController : ControllerBase
         _context.Reviews.Add(review);
         await _context.SaveChangesAsync();
 
+        await UpdateBookAverageRating(dto.BookId);
+
         return Ok(new { message = "Review submitted successfully." });
     }
 
@@ -68,6 +70,8 @@ public class ReviewController : ControllerBase
 
         await _context.SaveChangesAsync();
 
+        await UpdateBookAverageRating(review.BookId);
+
         return Ok(new { message = "Review updated successfully." });
     }
 
@@ -80,8 +84,12 @@ public class ReviewController : ControllerBase
         if (review == null)
             return NotFound(new { message = "Review not found or not yours." });
 
+        var bookId = review.BookId;
+
         _context.Reviews.Remove(review);
         await _context.SaveChangesAsync();
+
+        await UpdateBookAverageRating(bookId);
 
         return Ok(new { message = "Review deleted." });
     }
@@ -147,5 +155,21 @@ public class ReviewController : ControllerBase
             Comment = r.Comment,
             CreatedAt = r.CreatedAt
         };
+    }
+
+    private async Task UpdateBookAverageRating(long bookId)
+    {
+        var reviews = await _context.Reviews
+            .Where(r => r.BookId == bookId)
+            .ToListAsync();
+
+        var book = await _context.Books.FindAsync(bookId);
+        if (book == null) return;
+
+        book.AverageRating = reviews.Count > 0
+            ? Math.Round(reviews.Average(r => r.Rating), 2)
+            : 0;
+
+        await _context.SaveChangesAsync();
     }
 }

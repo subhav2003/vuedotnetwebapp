@@ -1,5 +1,5 @@
 <template>
-  <nav class="bg-[#23110d] py-4 shadow-md sticky top-0 z-10 text-[#C8B280]">
+  <nav class="bg-black py-4 shadow-md sticky top-0 z-10 text-[#C8B280]">
     <!-- Toasts -->
     <Toast :toasts="toasts" @close="removeToast" />
 
@@ -16,7 +16,7 @@
           <router-link to="/" class="text-lg font-semibold hover:text-[#A47148]"
                        exact-active-class="text-white font-bold">Home</router-link>
         </li>
-<!--        <li>
+        <!--<li>
           <router-link to="/connect" class="text-lg font-semibold hover:text-[#A47148]"
                        exact-active-class="text-white font-bold">Connect</router-link>
         </li>-->
@@ -97,6 +97,11 @@
         <!-- Cart Icon -->
         <CartIcon v-if="isLoggedIn" />
 
+        <!-- Wishlist Icon -->
+        <router-link v-if="isLoggedIn" to="/wishlist" class="hover:text-[#FFD700]">
+          <font-awesome-icon :icon="['fas','heart']" class="text-2xl text-[#C8B280]" />
+        </router-link>
+
         <!-- Profile Dropdown -->
         <div v-if="isLoggedIn" class="relative">
           <button @click="toggleProfileDropdown" class="hover:text-[#FFD700]">
@@ -145,7 +150,6 @@
     </div>
   </nav>
 </template>
-
 
 <script setup>
 import { ref, reactive, onMounted, watch } from 'vue'
@@ -202,7 +206,6 @@ async function fetchAcceptedOrders() {
     })
     acceptedOrders.value = res.data.data || []
 
-    const userId = +localStorage.getItem('userId')
     const pusher = new Pusher(PUSHER_KEY, {
       cluster: PUSHER_CLUSTER,
       forceTLS: true
@@ -211,10 +214,7 @@ async function fetchAcceptedOrders() {
     acceptedOrders.value.forEach(o => {
       const ch = pusher.subscribe(`order.${o.id}`)
       ch.bind('message.sent', () => {
-        // generic toast on new message
         showToast('New message received', 'success')
-
-        // update badge
         notificationCount.value++
         if (!unreadOrderIds.value.includes(o.id)) {
           unreadOrderIds.value.push(o.id)
@@ -256,7 +256,7 @@ function openChat(id) {
   unreadOrderIds.value = unreadOrderIds.value.filter(x=>x!==id)
 }
 
-// — server‑side notifications via Pusher —
+// — server-side notifications via Pusher —
 function initPusherNotifications() {
   const userId = +localStorage.getItem('userId')
   const pusher = new Pusher(PUSHER_KEY, {
@@ -316,5 +316,4 @@ watch(activeChatOrderId, val => {
 .nav-link-active { color:#472c20; font-weight:700; }
 .mobile-link { display:block; padding:.5rem 1rem; font-size:.875rem; color:#73442f; }
 .mobile-link:hover { background-color:#f3f0e7; color:#472c20; }
-
 </style>

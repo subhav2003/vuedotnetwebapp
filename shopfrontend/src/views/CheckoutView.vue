@@ -1,5 +1,5 @@
 <template>
-  <div class="checkout-page min-h-screen flex flex-col bg-[#0f0f0f] text-[#C8B280]">
+  <div class="checkout-page min-h-screen flex flex-col bg-gray-900 text-[#C8B280]">
     <NavBar />
     <Toast :toasts="toasts" @close="removeToast" />
 

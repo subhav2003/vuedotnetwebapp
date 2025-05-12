@@ -15,11 +15,7 @@
         <span class="text-gray-400">Logging in as:</span>
         <label class="flex items-center gap-2 cursor-pointer">
           <span :class="role === 'member' ? 'text-[#FFD700]' : 'text-gray-400'">Member</span>
-          <input
-              type="checkbox"
-              class="hidden"
-              v-model="isAdmin"
-          />
+          <input type="checkbox" class="hidden" v-model="isAdmin" />
           <div
               class="w-10 h-5 bg-[#333] rounded-full relative transition-colors duration-300"
               :class="{ 'bg-[#FFD700]': isAdmin }"
@@ -122,7 +118,7 @@ const forgotEmail = ref('');
 const isLoading = ref(false);
 const isResetting = ref(false);
 const showForgot = ref(false);
-const isAdmin = ref(false); // toggle
+const isAdmin = ref(false);
 
 const role = computed(() => (isAdmin.value ? 'admin' : 'member'));
 const router = useRouter();
@@ -142,7 +138,11 @@ function showToast(message, type = 'success') {
 const login = async () => {
   isLoading.value = true;
   try {
-    const { data } = await axios.post(`${apiBaseUrl}/api/account/login`, {
+    const endpoint = role.value === 'admin'
+        ? `${apiBaseUrl}/api/account/admin/login`
+        : `${apiBaseUrl}/api/account/login`;
+
+    const { data } = await axios.post(endpoint, {
       email: email.value,
       password: password.value,
       role: role.value
@@ -196,7 +196,6 @@ const sendResetLink = async () => {
   animation: spin 1s linear infinite;
   margin-right: 8px;
 }
-
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
