@@ -156,8 +156,9 @@ namespace Pustakalaya.Controllers
         public async Task<IActionResult> AdminLogin([FromBody] LoginDto login)
         {
             var role = login.Role?.ToLower();
-            if (role != "admin")
-                return BadRequest(new { message = "Invalid role. Must be 'admin'." });
+            if (role != "admin" && role != "superadmin")
+                return BadRequest(new { message = "Invalid role. Must be 'admin' or 'superadmin'." });
+
 
             var admin = await _context.Admins.FirstOrDefaultAsync(a => a.Email == login.Email);
             if (admin == null || !BCrypt.Net.BCrypt.Verify(login.Password, admin.Password))
@@ -246,6 +247,11 @@ namespace Pustakalaya.Controllers
             return Ok(new { message = "Profile updated successfully.", user = updatedDto });
         }
     }
+    
+    
+    
+    
+
     
     
 

@@ -81,6 +81,9 @@ namespace Pustakalaya.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("boolean");
 
+                    b.Property<long?>("MemberId")
+                        .HasColumnType("bigint");
+
                     b.Property<string>("Message")
                         .IsRequired()
                         .HasColumnType("text");
@@ -95,10 +98,9 @@ namespace Pustakalaya.Migrations
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<long>("UserId")
-                        .HasColumnType("bigint");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("MemberId");
 
                     b.ToTable("Announcements");
                 });
@@ -515,6 +517,16 @@ namespace Pustakalaya.Migrations
                     b.ToTable("Reviews");
                 });
 
+            modelBuilder.Entity("Pustakalaya.Models.Announcement", b =>
+                {
+                    b.HasOne("Pustakalaya.Models.Member", "Member")
+                        .WithMany("Announcements")
+                        .HasForeignKey("MemberId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("Member");
+                });
+
             modelBuilder.Entity("Pustakalaya.Models.Book", b =>
                 {
                     b.HasOne("Pustakalaya.Models.Admin", "Admin")
@@ -658,6 +670,8 @@ namespace Pustakalaya.Migrations
 
             modelBuilder.Entity("Pustakalaya.Models.Member", b =>
                 {
+                    b.Navigation("Announcements");
+
                     b.Navigation("Bookmarks");
 
                     b.Navigation("Orders");

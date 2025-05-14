@@ -29,11 +29,20 @@ namespace Pustakalaya.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IActionResult> GetBooks()
+        public async Task<IActionResult> GetBooks([FromQuery] int page = 1, [FromQuery] int pageSize = 10)
         {
+            if (page <= 0) page = 1;
+            if (pageSize <= 0 || pageSize > 100) pageSize = 10;
+
+            var totalBooks = await _context.Books.CountAsync();
+            var totalPages = (int)Math.Ceiling(totalBooks / (double)pageSize);
+
             var books = await _context.Books
                 .Include(b => b.Genre)
                 .Include(b => b.Images)
+                .OrderByDescending(b => b.CreatedAt)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
                 .Select(b => new BookDto
                 {
                     Id = b.Id,
@@ -63,8 +72,28 @@ namespace Pustakalaya.Controllers
                 })
                 .ToListAsync();
 
-            return Ok(new { success = true, message = "Books retrieved successfully.", data = books });
+            string baseUrl = $"{Request.Scheme}://{Request.Host}{Request.Path}";
+            string buildPageUrl(int targetPage) => $"{baseUrl}?page={targetPage}&pageSize={pageSize}";
+
+            return Ok(new
+            {
+                success = true,
+                message = "Books retrieved successfully.",
+                currentPage = page,
+                pageSize,
+                totalPages,
+                totalBooks,
+                links = new
+                {
+                    firstPage = buildPageUrl(1),
+                    lastPage = buildPageUrl(totalPages),
+                    prevPage = page > 1 ? buildPageUrl(page - 1) : null,
+                    nextPage = page < totalPages ? buildPageUrl(page + 1) : null
+                },
+                data = books
+            });
         }
+
 
         [HttpGet("{id}")]
         [AllowAnonymous]
@@ -335,9 +364,9 @@ namespace Pustakalaya.Controllers
             return Ok(new { success = true, message = "Genre deleted successfully." });
         }
         
-        [HttpGet("filter")]
+       [HttpGet("filter")]
         [AllowAnonymous]
-        public async Task<IActionResult> FilterBooks([FromQuery] BookFilterDto filter)
+        public async Task<IActionResult> FilterBooks([FromQuery] BookFilterDto filter, [FromQuery] int page = 1, [FromQuery] int pageSize = 10)
         {
             var query = _context.Books
                 .Include(b => b.Genre)
@@ -348,23 +377,32 @@ namespace Pustakalaya.Controllers
             {
                 query = query.Where(b =>
                     b.Title.Contains(filter.Search) ||
-                    b.Author.Contains(filter.Search));
+                    b.Author.Contains(filter.Search) ||
+                    b.Description.Contains(filter.Search) ||
+                    b.Isbn.Contains(filter.Search) ||
+                    b.Publisher.Contains(filter.Search));
             }
+
+            if (!string.IsNullOrWhiteSpace(filter.Language))
+                query = query.Where(b => b.Language == filter.Language);
+
+            if (!string.IsNullOrWhiteSpace(filter.Format))
+                query = query.Where(b => b.Format == filter.Format);
+
+            if (!string.IsNullOrWhiteSpace(filter.Publisher))
+                query = query.Where(b => b.Publisher == filter.Publisher);
 
             if (filter.GenreId.HasValue)
-            {
                 query = query.Where(b => b.GenreId == filter.GenreId);
-            }
+
+            if (filter.IsPhysicalAccess.HasValue)
+                query = query.Where(b => b.IsPhysicalAccess == filter.IsPhysicalAccess);
 
             if (filter.MinPrice.HasValue)
-            {
                 query = query.Where(b => b.Price >= filter.MinPrice);
-            }
 
             if (filter.MaxPrice.HasValue)
-            {
                 query = query.Where(b => b.Price <= filter.MaxPrice);
-            }
 
             if (!string.IsNullOrEmpty(filter.Sort))
             {
@@ -374,41 +412,61 @@ namespace Pustakalaya.Controllers
                     "price_asc" => query.OrderBy(b => b.Price),
                     "title_asc" => query.OrderBy(b => b.Title),
                     "title_desc" => query.OrderByDescending(b => b.Title),
+                    "popularity" => query.OrderByDescending(b => b.TotalSold),
+                    "date_desc" => query.OrderByDescending(b => b.PublicationDate),
+                    "date_asc" => query.OrderBy(b => b.PublicationDate),
                     _ => query
                 };
             }
 
-            var books = await query.Select(b => new
-            {
-                b.Id,
-                b.Title,
-                b.Author,
-                b.Price,
-                b.GenreId,
-                GenreName = b.Genre.Name,
-                b.Stock,
-                b.Language,
-                b.Format,
-                b.PublicationDate,
-                b.IsPhysicalAccess,
-                b.IsOnSale,
-                b.DiscountPercentage,
-                b.DiscountStart,
-                b.DiscountEnd,
-                b.Isbn,
-                b.Publisher,
-                b.BookType,
-                b.Description,
-                b.IsExclusiveEdition,
-                b.AverageRating,
-                b.TotalSold,
-                b.CreatedAt,
-                b.UpdatedAt,
-                Images = b.Images.Select(i => i.Url).ToList()
-            }).ToListAsync();
+            var totalItems = await query.CountAsync();
+            var totalPages = (int)Math.Ceiling(totalItems / (double)pageSize);
+            var books = await query
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .Select(b => new BookDto
+                {
+                    Id = b.Id,
+                    Title = b.Title,
+                    Author = b.Author,
+                    Isbn = b.Isbn,
+                    Language = b.Language,
+                    Format = b.Format,
+                    Price = b.Price,
+                    Stock = b.Stock,
+                    GenreName = b.Genre.Name,
+                    PublicationDate = b.PublicationDate,
+                    IsPhysicalAccess = b.IsPhysicalAccess,
+                    IsOnSale = b.IsOnSale,
+                    DiscountPercentage = b.DiscountPercentage,
+                    DiscountStart = b.DiscountStart,
+                    DiscountEnd = b.DiscountEnd,
+                    Description = b.Description,
+                    Publisher = b.Publisher,
+                    BookType = b.BookType,
+                    IsExclusiveEdition = b.IsExclusiveEdition,
+                    AverageRating = b.AverageRating,
+                    TotalSold = b.TotalSold,
+                    CreatedAt = b.CreatedAt,
+                    UpdatedAt = b.UpdatedAt,
+                    Images = b.Images.Select(i => i.Url).ToList()
+                })
+                .ToListAsync();
 
-            return Ok(new { data = books });
+            return Ok(new
+            {
+                success = true,
+                data = books,
+                currentPage = page,
+                totalPages,
+                links = new
+                {
+                    next = page < totalPages ? $"?page={page + 1}" : null,
+                    prev = page > 1 ? $"?page={page - 1}" : null
+                }
+            });
         }
+
 
 
     }

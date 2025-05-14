@@ -4,6 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 using Pustakalaya.Data;
 using System.Text;
 using Pustakalaya.Helpers;
+using Pustakalaya.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -50,6 +51,15 @@ builder.Services.AddAuthentication(options =>
 // Add JwtTokenHelper service
 builder.Services.AddSingleton<JwtTokenHelper>();
 
+// Add Pusher config
+builder.Services.Configure<PusherOptions>(builder.Configuration.GetSection("Pusher"));
+
+//  Add Pusher service
+builder.Services.AddSingleton<PusherService>();
+// Add Email service
+builder.Services.AddSingleton<EmailService>();
+
+
 // Build the application
 var app = builder.Build();
 
@@ -69,5 +79,12 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    await AdminSeeder.SeedAdminAsync(context);
+}
+
 
 app.Run();

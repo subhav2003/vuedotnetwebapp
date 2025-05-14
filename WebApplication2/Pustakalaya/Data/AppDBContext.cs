@@ -110,6 +110,16 @@ namespace Pustakalaya.Data
                 .WithMany(m => m.Bookmarks)
                 .HasForeignKey(b => b.MemberId)
                 .OnDelete(DeleteBehavior.Cascade);
+            
+            // Announcement ↔ Member (optional)
+            modelBuilder.Entity<Announcement>()
+                .HasOne(a => a.Member)
+                .WithMany(m => m.Announcements) 
+                .HasForeignKey(a => a.MemberId)
+                .OnDelete(DeleteBehavior.SetNull);
+
+
+
         }
     }
 }

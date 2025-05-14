@@ -6,6 +6,7 @@ using Pustakalaya.Data;
 using Pustakalaya.DTOs;
 using Pustakalaya.Models;
 using System.Security.Cryptography;
+using Pustakalaya.Services;
 
 namespace Pustakalaya.Controllers;
 
@@ -14,10 +15,14 @@ namespace Pustakalaya.Controllers;
 public class OrderController : ControllerBase
 {
     private readonly AppDbContext _context;
+    private readonly PusherService _pusher;
+    private readonly EmailService _emailService;
 
-    public OrderController(AppDbContext context)
+    public OrderController(AppDbContext context, PusherService pusher, EmailService emailService)
     {
         _context = context;
+        _pusher = pusher;
+        _emailService = emailService;
     }
 
     private long? GetUserId()
@@ -40,7 +45,8 @@ public class OrderController : ControllerBase
     public async Task<ActionResult> CreateOrder()
     {
         var memberId = GetUserId();
-        if (memberId == null) return Unauthorized(new { success = false, message = "Invalid member ID." });
+        if (memberId == null)
+            return Unauthorized(new { success = false, message = "Invalid member ID." });
 
         var cart = await _context.Carts
             .Include(c => c.Items)
@@ -135,6 +141,10 @@ public class OrderController : ControllerBase
 
         await _context.SaveChangesAsync();
 
+        // === Email Dispatch ===
+        _context.Entry(order).Reference(o => o.Member).Load(); // Load email
+        await _emailService.SendOrderPlacedEmail(order);
+
         return Ok(new
         {
             success = true,
@@ -142,6 +152,7 @@ public class OrderController : ControllerBase
             data = await BuildOrderResponse(order.Id)
         });
     }
+
 
 
     [HttpGet]
@@ -219,12 +230,14 @@ public class OrderController : ControllerBase
     public async Task<ActionResult<OrderResponseDto>> CancelOrder(long id)
     {
         var memberId = GetUserId();
-        if (memberId == null) return Unauthorized();
+        if (memberId == null)
+            return Unauthorized();
 
         var order = await _context.Orders
             .Include(o => o.OrderItems)
-                .ThenInclude(i => i.Book)
-                    .ThenInclude(b => b.Images)
+            .ThenInclude(i => i.Book)
+            .ThenInclude(b => b.Images)
+            .Include(o => o.Member) // Include member for email
             .FirstOrDefaultAsync(o => o.Id == id && o.MemberId == memberId);
 
         if (order == null)
@@ -238,8 +251,13 @@ public class OrderController : ControllerBase
         order.UpdatedAt = DateTime.UtcNow;
 
         await _context.SaveChangesAsync();
+
+        // === Send cancellation email ===
+        await _emailService.SendOrderCancelledEmail(order);
+
         return Ok(BuildOrderResponseFromEntity(order));
     }
+
 
     [HttpDelete("{id}")]
     [Authorize(Roles = "admin")]
@@ -311,10 +329,42 @@ public class OrderController : ControllerBase
         order.IsPaid = true;
         order.UpdatedAt = DateTime.UtcNow;
 
+        // Save the updated order first
         await _context.SaveChangesAsync();
+
+        // === Create a related announcement ===
+        var announcement = new Announcement
+        {
+            MemberId = order.MemberId,
+            Title = "Order Claimed",
+            Message = $"Your order with Claim Code {order.ClaimCode} has been successfully claimed.",
+            StartDate = DateTime.UtcNow,
+            EndDate = DateTime.UtcNow.AddDays(3),
+            IsActive = true,
+            CreatedAt = DateTime.UtcNow,
+            UpdatedAt = DateTime.UtcNow
+        };
+
+        _context.Announcements.Add(announcement);
+        await _context.SaveChangesAsync();
+
+        // === Broadcast announcement via Pusher ===
+        var channel = $"announcement.user.{order.MemberId}";
+        await _pusher.TriggerAsync(channel, "NewAnnouncement", new
+        {
+            announcement.Id,
+            announcement.Title,
+            announcement.Message,
+            announcement.StartDate,
+            announcement.EndDate,
+            announcement.IsActive,
+            Audience = $"user.{order.MemberId}"
+        });
 
         return Ok(BuildOrderResponseFromEntity(order));
     }
+
+
 
     
     private async Task<OrderResponseDto> BuildOrderResponse(long id)
